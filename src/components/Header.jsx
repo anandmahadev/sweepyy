@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Phone, Linkedin, Twitter, Facebook, Menu, X } from 'lucide-react';
 
+/**
+ * Header Component
+ * Renders the main navigation, logo, and search functionality.
+ * Supports sticky behavior and mobile menu toggle.
+ */
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
