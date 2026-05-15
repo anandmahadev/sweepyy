@@ -15,6 +15,10 @@ const StatItem = ({ number, label }) => (
   </div>
 );
 
+/**
+ * StatsBanner Component
+ * Displays key company statistics in a horizontal banner.
+ */
 const StatsBanner = () => {
   const stats = [
     { number: '70+', label: 'Locations' },

@@ -2,6 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Linkedin, Twitter, Facebook, MapPin, Phone, Mail, Clock } from 'lucide-react';
 
+/**
+ * Footer Component
+ * Renders site-wide footer with navigation links, contact info, and social icons.
+ */
 const Footer = () => {
   return (
     <footer className="footer">

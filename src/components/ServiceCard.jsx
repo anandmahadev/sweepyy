@@ -36,6 +36,7 @@ const ServiceCard = ({ icon: Icon, title, description, delay = 0 }) => {
         .service-card:hover {
           transform: translateY(-10px);
           box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+          border-bottom: 4px solid var(--accent-orange);
         }
 
         .card-icon {

@@ -1,5 +1,10 @@
 import React from 'react';
 
+/**
+ * SectionHeader Component
+ * Displays a section title with an optional eyebrow text.
+ * Supports centered and light modes.
+ */
 const SectionHeader = ({ eyebrow, title, centered = true, light = false }) => {
   return (
     <div className={`section-header ${centered ? 'text-center' : ''}`}>

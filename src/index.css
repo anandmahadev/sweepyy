@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&display=swap');
 
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: var(--color-primary-light);
+  color: white;
+}
+
 :root {
   --primary-blue: #003087;
   --accent-orange: #F47920;
@@ -30,7 +39,7 @@
 body {
   font-family: var(--font-primary);
   font-size: 16px;
-  line-height: 1.7;
+  line-height: 1.8;
   color: var(--dark-gray);
   background-color: var(--white);
   -webkit-font-smoothing: antialiased;
@@ -92,6 +101,7 @@ button {
   text-transform: uppercase;
   font-size: 14px;
   text-align: center;
+  transition: var(--transition-smooth);
 }
 
 .btn-orange {
@@ -129,3 +139,5 @@ button {
 .accessibility-grayscale { filter: grayscale(100%); }
 .accessibility-high-contrast { contrast: 150%; }
 .accessibility-underline a { text-decoration: underline; }
+
+/* End of File */
