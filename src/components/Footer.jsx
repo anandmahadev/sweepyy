@@ -1,10 +1,18 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 import { Linkedin, Twitter, Facebook, MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { SITE_CONFIG } from '../constants/config';
 
 /**
  * Footer Component
- * Renders site-wide footer with navigation links, contact info, and social icons.
+ * 
+ * Renders the site-wide footer which includes:
+ * - Company logo and mission statement
+ * - Social media links
+ * - Quick links for navigation
+ * - List of service solutions
+ * - Contact information and hours
+ * - Legal links (Privacy Policy, Terms of Use)
+ * 
+ * @returns {React.ReactElement} The rendered footer component
  */
 const Footer = () => {
   return (
@@ -21,9 +29,9 @@ const Footer = () => {
               Sweeping Corporation of America is the largest professional power sweeping and JetVac services company in the U.S.
             </p>
             <div className="footer-socials">
-              <a href="#" className="social-link"><Linkedin size={20} /></a>
-              <a href="#" className="social-link"><Twitter size={20} /></a>
-              <a href="#" className="social-link"><Facebook size={20} /></a>
+              <a href={SITE_CONFIG.social.linkedin} className="social-link" target="_blank" rel="noopener noreferrer"><Linkedin size={20} /></a>
+              <a href={SITE_CONFIG.social.twitter} className="social-link" target="_blank" rel="noopener noreferrer"><Twitter size={20} /></a>
+              <a href={SITE_CONFIG.social.facebook} className="social-link" target="_blank" rel="noopener noreferrer"><Facebook size={20} /></a>
             </div>
           </div>
 
@@ -60,19 +68,19 @@ const Footer = () => {
             <ul className="contact-info">
               <li>
                 <MapPin size={18} className="text-orange" />
-                <span>HQ: Cleveland, Ohio</span>
+                <span>{SITE_CONFIG.address}</span>
               </li>
               <li>
                 <Phone size={18} className="text-orange" />
-                <span>(216) 777-2750</span>
+                <span>{SITE_CONFIG.phone}</span>
               </li>
               <li>
                 <Mail size={18} className="text-orange" />
-                <span>mlatanza@sweepingcorp.com</span>
+                <span>{SITE_CONFIG.email}</span>
               </li>
               <li>
                 <Clock size={18} className="text-orange" />
-                <span>Mon–Fri, 8AM–5PM</span>
+                <span>{SITE_CONFIG.hours}</span>
               </li>
             </ul>
           </div>

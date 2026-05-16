@@ -1,17 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import { Phone, Linkedin, Twitter, Facebook, Menu, X } from 'lucide-react';
+import { SITE_CONFIG } from '../constants/config';
 
 /**
  * Header Component
- * Renders the main navigation, logo, and search functionality.
- * Supports sticky behavior and mobile menu toggle.
+ * 
+ * The main navigational header of the application. Includes:
+ * - Top bar with contact info and social links
+ * - Main navigation menu with active state tracking
+ * - Mobile responsive menu toggle
+ * - Sticky behavior on scroll
+ * 
+ * @returns {React.ReactElement} The rendered header component
  */
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
+  /**
+   * Effect hook to handle scroll events and update the sticky header state.
+   */
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -40,12 +48,12 @@ const Header = () => {
           </div>
           <div className="top-bar-right">
             <span className="phone">
-              <Phone size={14} /> (216) 777-2750
+              <Phone size={14} /> {SITE_CONFIG.phone}
             </span>
             <div className="social-icons">
-              <Linkedin size={16} />
-              <Twitter size={16} />
-              <Facebook size={16} />
+              <a href={SITE_CONFIG.social.linkedin} target="_blank" rel="noopener noreferrer"><Linkedin size={16} /></a>
+              <a href={SITE_CONFIG.social.twitter} target="_blank" rel="noopener noreferrer"><Twitter size={16} /></a>
+              <a href={SITE_CONFIG.social.facebook} target="_blank" rel="noopener noreferrer"><Facebook size={16} /></a>
             </div>
             <Link to="/contact" className="quote-link">Request a Quote</Link>
           </div>
