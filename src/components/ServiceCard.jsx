@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const ServiceCard = ({ icon: Icon, title, description, delay = 0 }) => {
+const ServiceCard = ({ icon: Icon, title = 'Service Title', description = 'Service description goes here.', delay = 0 }) => {
+  if (!Icon) return null;
   return (
     <motion.div 
       initial={{ opacity: 0, y: 30 }}
