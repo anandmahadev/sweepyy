@@ -1,5 +1,6 @@
 import { Phone, Linkedin, Twitter, Facebook, Menu, X } from 'lucide-react';
 import { SITE_CONFIG } from '../constants/config';
+import { NAV_LINKS } from '../constants/navigation';
 
 /**
  * Header Component
@@ -27,16 +28,6 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Solutions', path: '/solutions' },
-    { name: 'Service Areas', path: '/service-areas' },
-    { name: 'News', path: '/news' },
-    { name: 'Careers', path: '/careers' },
-    { name: 'Contact', path: '/contact' },
-  ];
 
   return (
     <header className={`header-container ${isScrolled ? 'scrolled' : ''}`}>
@@ -74,7 +65,7 @@ const Header = () => {
           </Link>
 
           <div className={`nav-links ${isMenuOpen ? 'mobile-open' : ''}`}>
-            {navLinks.map((link) => (
+            {NAV_LINKS.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
