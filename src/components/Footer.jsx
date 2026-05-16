@@ -1,5 +1,6 @@
 import { Linkedin, Twitter, Facebook, MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { SITE_CONFIG } from '../constants/config';
+import { NAV_LINKS, FOOTER_SOLUTIONS } from '../constants/navigation';
 
 /**
  * Footer Component
@@ -39,13 +40,9 @@ const Footer = () => {
           <div className="footer-col">
             <h4 className="footer-heading">Quick Links</h4>
             <ul className="footer-links">
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/about">About</Link></li>
-              <li><Link to="/solutions">Solutions</Link></li>
-              <li><Link to="/service-areas">Service Areas</Link></li>
-              <li><Link to="/news">News</Link></li>
-              <li><Link to="/careers">Careers</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
+              {NAV_LINKS.map(link => (
+                <li key={link.name}><Link to={link.path}>{link.name}</Link></li>
+              ))}
             </ul>
           </div>
 
@@ -53,12 +50,9 @@ const Footer = () => {
           <div className="footer-col">
             <h4 className="footer-heading">Our Solutions</h4>
             <ul className="footer-links">
-              <li><Link to="/solutions">Street Sweeping</Link></li>
-              <li><Link to="/solutions">Highway Sweeping</Link></li>
-              <li><Link to="/solutions">JetVac Services</Link></li>
-              <li><Link to="/solutions">Parking Lot Sweeping</Link></li>
-              <li><Link to="/solutions">Construction Sweeping</Link></li>
-              <li><Link to="/solutions">Industrial Sweeping</Link></li>
+              {FOOTER_SOLUTIONS.map((solution, index) => (
+                <li key={index}><Link to={solution.path}>{solution.name}</Link></li>
+              ))}
             </ul>
           </div>
 
