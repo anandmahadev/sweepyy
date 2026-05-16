@@ -71,7 +71,7 @@ const Home = () => {
             <Link to="/about" className="btn btn-orange">Learn More About Us</Link>
           </div>
           <div className="intro-image">
-            <img src="https://images.unsplash.com/photo-1517524206127-48bbd363f3d7?auto=format&fit=crop&q=80&w=1000" alt="SCA Fleet" />
+            <img src="https://images.unsplash.com/photo-1517524206127-48bbd363f3d7?auto=format&fit=crop&q=80&w=1000" alt="SCA professional street sweeping vehicle on duty" />
             <div className="image-accent"></div>
           </div>
         </div>
@@ -102,7 +102,7 @@ const Home = () => {
       <section className="section-padding why-sca bg-blue">
         <div className="container why-grid">
           <div className="why-image">
-            <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=1000" alt="SCA Technology" />
+            <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=1000" alt="Advanced sweeping technology and machinery overview" />
           </div>
           <div className="why-content">
             <span className="eyebrow">Why Choose SCA</span>
@@ -152,7 +152,7 @@ const Home = () => {
             {[1, 2, 3].map(i => (
               <div key={i} className="news-card">
                 <div className="news-thumb">
-                   <img src={`https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=400&sig=${i}`} alt="News" />
+                   <img src={`https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=400&sig=${i}`} alt={`SCA industry news update ${i}`} />
                 </div>
                 <div className="news-body">
                   <span className="news-date">May {10+i}, 2024</span>

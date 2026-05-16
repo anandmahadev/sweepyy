@@ -24,6 +24,11 @@ html {
   --font-primary: 'Open Sans', sans-serif;
   --font-heading: 'Oswald', 'Open Sans', sans-serif;
   
+  --weight-regular: 400;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+  
   --transition-smooth: all 0.3s ease;
   --box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   --header-height: 80px;
@@ -47,7 +52,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: var(--weight-bold);
   line-height: 1.2;
   color: var(--primary-blue);
 }
@@ -102,6 +107,16 @@ button {
   font-size: 14px;
   text-align: center;
   transition: var(--transition-smooth);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+  transform: translateY(0);
 }
 
 .btn-orange {

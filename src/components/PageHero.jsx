@@ -2,9 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 
-const PageHero = ({ title, subtitle }) => {
+const PageHero = ({ title, bgImage }) => {
+  const defaultBg = 'https://images.unsplash.com/photo-1590486803833-ffc6f9861b3c?auto=format&fit=crop&q=80&w=1920';
+  const backgroundUrl = bgImage || defaultBg;
+
   return (
-    <section className="page-hero bg-blue">
+    <section className="page-hero bg-blue" style={{ backgroundImage: `linear-gradient(rgba(0, 48, 135, 0.9), rgba(0, 48, 135, 0.9)), url(${backgroundUrl})` }}>
       <div className="container">
         <h1 className="page-title">{title}</h1>
         <div className="breadcrumbs">
@@ -18,8 +21,6 @@ const PageHero = ({ title, subtitle }) => {
         .page-hero {
           padding: 100px 0 60px;
           margin-top: calc(var(--header-height) + var(--top-bar-height));
-          background: linear-gradient(rgba(0, 48, 135, 0.9), rgba(0, 48, 135, 0.9)), 
-                      url('https://images.unsplash.com/photo-1590486803833-ffc6f9861b3c?auto=format&fit=crop&q=80&w=1920');
           background-size: cover;
           background-position: center;
           color: white;

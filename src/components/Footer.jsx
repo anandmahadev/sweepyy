@@ -1,10 +1,19 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 import { Linkedin, Twitter, Facebook, MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { SITE_CONFIG } from '../constants/config';
+import { NAV_LINKS, FOOTER_SOLUTIONS } from '../constants/navigation';
 
 /**
  * Footer Component
- * Renders site-wide footer with navigation links, contact info, and social icons.
+ * 
+ * Renders the site-wide footer which includes:
+ * - Company logo and mission statement
+ * - Social media links
+ * - Quick links for navigation
+ * - List of service solutions
+ * - Contact information and hours
+ * - Legal links (Privacy Policy, Terms of Use)
+ * 
+ * @returns {React.ReactElement} The rendered footer component
  */
 const Footer = () => {
   return (
@@ -21,9 +30,9 @@ const Footer = () => {
               Sweeping Corporation of America is the largest professional power sweeping and JetVac services company in the U.S.
             </p>
             <div className="footer-socials">
-              <a href="#" className="social-link"><Linkedin size={20} /></a>
-              <a href="#" className="social-link"><Twitter size={20} /></a>
-              <a href="#" className="social-link"><Facebook size={20} /></a>
+              <a href={SITE_CONFIG.social.linkedin} className="social-link" target="_blank" rel="noopener noreferrer"><Linkedin size={20} /></a>
+              <a href={SITE_CONFIG.social.twitter} className="social-link" target="_blank" rel="noopener noreferrer"><Twitter size={20} /></a>
+              <a href={SITE_CONFIG.social.facebook} className="social-link" target="_blank" rel="noopener noreferrer"><Facebook size={20} /></a>
             </div>
           </div>
 
@@ -31,13 +40,9 @@ const Footer = () => {
           <div className="footer-col">
             <h4 className="footer-heading">Quick Links</h4>
             <ul className="footer-links">
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/about">About</Link></li>
-              <li><Link to="/solutions">Solutions</Link></li>
-              <li><Link to="/service-areas">Service Areas</Link></li>
-              <li><Link to="/news">News</Link></li>
-              <li><Link to="/careers">Careers</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
+              {NAV_LINKS.map(link => (
+                <li key={link.name}><Link to={link.path}>{link.name}</Link></li>
+              ))}
             </ul>
           </div>
 
@@ -45,12 +50,9 @@ const Footer = () => {
           <div className="footer-col">
             <h4 className="footer-heading">Our Solutions</h4>
             <ul className="footer-links">
-              <li><Link to="/solutions">Street Sweeping</Link></li>
-              <li><Link to="/solutions">Highway Sweeping</Link></li>
-              <li><Link to="/solutions">JetVac Services</Link></li>
-              <li><Link to="/solutions">Parking Lot Sweeping</Link></li>
-              <li><Link to="/solutions">Construction Sweeping</Link></li>
-              <li><Link to="/solutions">Industrial Sweeping</Link></li>
+              {FOOTER_SOLUTIONS.map((solution, index) => (
+                <li key={index}><Link to={solution.path}>{solution.name}</Link></li>
+              ))}
             </ul>
           </div>
 
@@ -60,19 +62,19 @@ const Footer = () => {
             <ul className="contact-info">
               <li>
                 <MapPin size={18} className="text-orange" />
-                <span>HQ: Cleveland, Ohio</span>
+                <span>{SITE_CONFIG.address}</span>
               </li>
               <li>
                 <Phone size={18} className="text-orange" />
-                <span>(216) 777-2750</span>
+                <span>{SITE_CONFIG.phone}</span>
               </li>
               <li>
                 <Mail size={18} className="text-orange" />
-                <span>mlatanza@sweepingcorp.com</span>
+                <span>{SITE_CONFIG.email}</span>
               </li>
               <li>
                 <Clock size={18} className="text-orange" />
-                <span>Mon–Fri, 8AM–5PM</span>
+                <span>{SITE_CONFIG.hours}</span>
               </li>
             </ul>
           </div>

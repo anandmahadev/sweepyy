@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const ServiceCard = ({ icon: Icon, title, description, delay = 0 }) => {
+const ServiceCard = ({ icon: Icon, title = 'Service Title', description = 'Service description goes here.', delay = 0 }) => {
+  if (!Icon) return null;
   return (
     <motion.div 
       initial={{ opacity: 0, y: 30 }}
@@ -37,6 +38,10 @@ const ServiceCard = ({ icon: Icon, title, description, delay = 0 }) => {
           transform: translateY(-10px);
           box-shadow: 0 10px 25px rgba(0,0,0,0.1);
           border-bottom: 4px solid var(--accent-orange);
+        }
+
+        .service-card:hover .card-icon {
+          transform: scale(1.1);
         }
 
         .card-icon {

@@ -22,22 +22,28 @@ const News = () => {
         <div className="container news-layout">
           <div className="news-main">
             <div className="news-grid-full">
-              {posts.map((post) => (
-                <div key={post.id} className="blog-card">
-                  <div className="blog-img">
-                    <img src={post.image} alt={post.title} />
-                  </div>
-                  <div className="blog-content">
-                    <div className="blog-meta">
-                      <span className="blog-category">{post.category}</span>
-                      <span className="blog-date">{post.date}</span>
+              {posts.length > 0 ? (
+                posts.map((post) => (
+                  <div key={post.id} className="blog-card">
+                    <div className="blog-img">
+                      <img src={post.image} alt={post.title} />
                     </div>
-                    <h3>{post.title}</h3>
-                    <p>{post.excerpt}</p>
-                    <Link to="/news" className="read-more">Read More <ChevronRight size={16} /></Link>
+                    <div className="blog-content">
+                      <div className="blog-meta">
+                        <span className="blog-category">{post.category}</span>
+                        <span className="blog-date">{post.date}</span>
+                      </div>
+                      <h3>{post.title}</h3>
+                      <p>{post.excerpt}</p>
+                      <Link to="/news" className="read-more">Read More <ChevronRight size={16} /></Link>
+                    </div>
                   </div>
+                ))
+              ) : (
+                <div className="no-posts">
+                  <p>No news posts available at this time. Please check back later.</p>
                 </div>
-              ))}
+              )}
             </div>
             
             <div className="pagination">

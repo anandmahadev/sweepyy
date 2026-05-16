@@ -6,7 +6,18 @@ import { Truck, Road, ParkingCircle, Construction, Waves, CheckCircle, Send } fr
 
 const ServiceAreaDetail = () => {
   const { area } = useParams();
-  const stateName = area ? area.charAt(0).toUpperCase() + area.slice(1).replace('-', ' ') : 'Local';
+
+  /**
+   * Formats the area slug into a human-readable state name.
+   * @param {string} slug 
+   * @returns {string}
+   */
+  const formatStateName = (slug) => {
+    if (!slug) return 'Local';
+    return slug.charAt(0).toUpperCase() + slug.slice(1).replace('-', ' ');
+  };
+
+  const stateName = formatStateName(area);
 
   return (
     <div className="area-detail-page">
