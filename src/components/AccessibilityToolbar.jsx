@@ -51,15 +51,15 @@ const AccessibilityToolbar = () => {
           </button>
         </div>
 
-        <button className={`tool-btn ${grayscale ? 'active' : ''}`} onClick={toggleGrayscale}>
+        <button className={`tool-btn ${grayscale ? 'active' : ''}`} onClick={toggleGrayscale} aria-pressed={grayscale}>
           <CircleDashed size={18} /> Grayscale
         </button>
 
-        <button className={`tool-btn ${highContrast ? 'active' : ''}`} onClick={toggleHighContrast}>
+        <button className={`tool-btn ${highContrast ? 'active' : ''}`} onClick={toggleHighContrast} aria-pressed={highContrast}>
           <Contrast size={18} /> High Contrast
         </button>
 
-        <button className={`tool-btn ${underlineLinks ? 'active' : ''}`} onClick={toggleUnderline}>
+        <button className={`tool-btn ${underlineLinks ? 'active' : ''}`} onClick={toggleUnderline} aria-pressed={underlineLinks}>
           <Link2 size={18} /> Underline Links
         </button>
 
