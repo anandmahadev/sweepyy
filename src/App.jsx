@@ -16,7 +16,7 @@ import News from './pages/News';
 import Careers from './pages/Careers';
 import Contact from './pages/Contact';
 import ServiceAreaDetail from './pages/ServiceAreaDetail';
-
+import { ROUTES } from './constants/routes';
 
 function App() {
   return (
@@ -26,15 +26,14 @@ function App() {
         <Header />
         <main>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/solutions" element={<Solutions />} />
-            <Route path="/service-areas" element={<ServiceAreas />} />
-            <Route path="/service-areas/:area" element={<ServiceAreaDetail />} />
-
-            <Route path="/news" element={<News />} />
-            <Route path="/careers" element={<Careers />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path={ROUTES.HOME} element={<Home />} />
+            <Route path={ROUTES.ABOUT} element={<About />} />
+            <Route path={ROUTES.SOLUTIONS} element={<Solutions />} />
+            <Route path={ROUTES.SERVICE_AREAS} element={<ServiceAreas />} />
+            <Route path={ROUTES.SERVICE_AREA_DETAIL} element={<ServiceAreaDetail />} />
+            <Route path={ROUTES.NEWS} element={<News />} />
+            <Route path={ROUTES.CAREERS} element={<Careers />} />
+            <Route path={ROUTES.CONTACT} element={<Contact />} />
           </Routes>
         </main>
         <Footer />
