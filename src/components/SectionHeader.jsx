@@ -33,11 +33,15 @@ const SectionHeader = ({ eyebrow, title, centered = true, light = false }) => {
         h2 {
           font-size: 32px;
           margin: 0;
+          line-height: 1.3;
         }
 
         @media (max-width: 768px) {
+          .section-header {
+            margin-bottom: 30px;
+          }
           h2 {
-            font-size: 28px;
+            font-size: 26px;
           }
         }
       `}</style>
