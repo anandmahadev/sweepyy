@@ -40,7 +40,10 @@ const StatsBanner = () => {
 
       <style jsx>{`
         .stats-banner {
-          padding: 40px 0;
+          padding: 60px 0;
+          background: linear-gradient(135deg, var(--primary-blue) 0%, #002366 100%);
+          position: relative;
+          overflow: hidden;
         }
 
         .stats-grid {
