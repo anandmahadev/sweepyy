@@ -39,6 +39,10 @@ const ServiceCard = ({ icon: Icon, title, description, delay = 0 }) => {
           border-bottom: 4px solid var(--accent-orange);
         }
 
+        .service-card:hover .card-icon {
+          transform: scale(1.1);
+        }
+
         .card-icon {
           width: 70px;
           height: 70px;
