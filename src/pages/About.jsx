@@ -1,8 +1,10 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+
+// Internal Components
 import PageHero from '../components/PageHero';
 import StatsBanner from '../components/StatsBanner';
 import SectionHeader from '../components/SectionHeader';
-import { motion } from 'framer-motion';
 
 const About = () => {
   const leadership = [
