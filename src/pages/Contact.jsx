@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PageHero from '../components/PageHero';
 import SectionHeader from '../components/SectionHeader';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import { SITE_CONFIG } from '../constants/config';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -95,28 +96,28 @@ const Contact = () => {
                   <div className="info-icon"><MapPin size={24} /></div>
                   <div className="info-text">
                     <strong>Headquarters</strong>
-                    <p>Cleveland, Ohio</p>
+                    <p>{SITE_CONFIG.address}</p>
                   </div>
                 </li>
                 <li>
                   <div className="info-icon"><Phone size={24} /></div>
                   <div className="info-text">
                     <strong>Phone</strong>
-                    <p>(216) 777-2750</p>
+                    <p>{SITE_CONFIG.phone}</p>
                   </div>
                 </li>
                 <li>
                   <div className="info-icon"><Mail size={24} /></div>
                   <div className="info-text">
                     <strong>Email</strong>
-                    <p>mlatanza@sweepingcorp.com</p>
+                    <p>{SITE_CONFIG.email}</p>
                   </div>
                 </li>
                 <li>
                   <div className="info-icon"><Clock size={24} /></div>
                   <div className="info-text">
                     <strong>Business Hours</strong>
-                    <p>Mon–Fri: 8:00 AM – 5:00 PM</p>
+                    <p>{SITE_CONFIG.hours}</p>
                   </div>
                 </li>
               </ul>
