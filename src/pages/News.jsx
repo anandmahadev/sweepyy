@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PageHero from '../components/PageHero';
 import SectionHeader from '../components/SectionHeader';
 import { Link } from 'react-router-dom';
 import { Search, ChevronRight } from 'lucide-react';
 
 const News = () => {
+  const [searchQuery, setSearchQuery] = useState('');
   const posts = [
     { id: 1, title: 'SCA Acquires Leading Power Sweeping Company in Florida', date: 'May 12, 2024', category: 'Company News', excerpt: 'Strategic expansion continues in the Southeast region with the acquisition of Gulf Coast Sweeping...', image: 'https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&q=80&w=400' },
     { id: 2, title: 'The Importance of Spring Street Sweeping for Stormwater Management', date: 'April 28, 2024', category: 'Industry Insights', excerpt: 'How municipal sweeping programs prevent pollutants from entering our waterways during spring rain events...', image: 'https://images.unsplash.com/photo-1590486803833-ffc6f9861b3c?auto=format&fit=crop&q=80&w=400' },
@@ -14,6 +15,12 @@ const News = () => {
     { id: 6, title: 'Supporting Municipalities with Emergency JetVac Services', date: 'February 18, 2024', category: 'Service Spotlight', excerpt: 'How SCA responded to recent flooding events with rapid-deployment sewer cleaning solutions...', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400' },
   ];
 
+  const filteredPosts = posts.filter(post => 
+    post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    post.category.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="news-page">
       <PageHero title="News & Insights" />
@@ -22,8 +29,8 @@ const News = () => {
         <div className="container news-layout">
           <div className="news-main">
             <div className="news-grid-full">
-              {posts.length > 0 ? (
-                posts.map((post) => (
+              {filteredPosts.length > 0 ? (
+                filteredPosts.map((post) => (
                   <div key={post.id} className="blog-card">
                     <div className="blog-img">
                       <img src={post.image} alt={post.title} />
@@ -58,7 +65,21 @@ const News = () => {
             <div className="sidebar-widget">
               <h4>Search</h4>
               <div className="search-box">
-                <input type="text" placeholder="Search news..." />
+                <input 
+                  type="text" 
+                  placeholder="Search news..." 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                {searchQuery && (
+                  <button 
+                    onClick={() => setSearchQuery('')} 
+                    style={{ background: 'transparent', color: '#999', border: 'none', outline: 'none', cursor: 'pointer', fontSize: '18px', marginRight: '5px' }}
+                    type="button"
+                  >
+                    ×
+                  </button>
+                )}
                 <button><Search size={18} /></button>
               </div>
             </div>
