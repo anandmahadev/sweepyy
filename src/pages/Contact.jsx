@@ -16,6 +16,14 @@ const Contact = () => {
 
   const [status, setStatus] = useState('');
   const [errors, setErrors] = useState({});
+  const [activeFaq, setActiveFaq] = useState(null);
+
+  const faqs = [
+    { q: 'What states do you currently service?', a: 'SCA operates across 21 states including Ohio, Florida, Texas, California, Indiana, and Pennsylvania, with over 70 local dispatch locations.' },
+    { q: 'How do you price commercial sweeping contracts?', a: 'Pricing is based on sweeping frequency, area size, debris volume, and specific service needs (e.g. hand-blowing area corners or trash bin cleanouts). Contact us for a free custom quote.' },
+    { q: 'Are your sweeping operations eco-friendly?', a: 'Yes! Our power sweeping services play a critical role in municipal stormwater runoff management and comply with all EPA Clean Water Act requirements.' },
+    { q: 'Do you offer emergency sweeping or JetVac sewer cleanup?', a: 'Yes, we provide 24/7 rapid-deployment emergency services for municipal spills, construction site overflows, storm cleanups, and sewer line blockages.' }
+  ];
 
   const validateForm = () => {
     const newErrors = {};
@@ -173,6 +181,39 @@ const Contact = () => {
                 loading="lazy"
               ></iframe>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding bg-light faq-section" style={{ borderTop: '1px solid var(--border-gray)' }}>
+        <div className="container" style={{ maxWidth: '800px' }}>
+          <SectionHeader eyebrow="Frequently Asked Questions" title="Got Questions? We Have Answers" centered={true} />
+          <div className="faq-grid" style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
+            {faqs.map((faq, index) => (
+              <div 
+                key={index} 
+                className={`faq-item ${activeFaq === index ? 'active' : ''}`} 
+                onClick={() => setActiveFaq(activeFaq === index ? null : index)}
+                style={{ 
+                  background: 'white', 
+                  borderRadius: '6px', 
+                  border: '1px solid var(--border-gray)', 
+                  cursor: 'pointer',
+                  overflow: 'hidden',
+                  transition: 'var(--transition-smooth)'
+                }}
+              >
+                <div className="faq-question" style={{ padding: '20px 25px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <h4 style={{ margin: 0, fontSize: '16px', color: 'var(--primary-blue)' }}>{faq.q}</h4>
+                  <span style={{ fontSize: '20px', color: 'var(--accent-orange)', fontWeight: 'bold' }}>{activeFaq === index ? '−' : '+'}</span>
+                </div>
+                {activeFaq === index && (
+                  <div className="faq-answer" style={{ padding: '0 25px 20px', borderTop: '1px solid rgba(0,0,0,0.03)' }}>
+                    <p style={{ margin: 0, fontSize: '15px', color: 'var(--medium-gray)', lineHeight: '1.6' }}>{faq.a}</p>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>
