@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PageHero from '../components/PageHero';
 import SectionHeader from '../components/SectionHeader';
 
 const ServiceAreas = () => {
+  const [filterQuery, setFilterQuery] = useState('');
   const states = [
     'Alabama', 'California', 'Delaware', 'Florida', 'Georgia', 'Illinois', 
     'Indiana', 'Louisiana', 'Maryland', 'Michigan', 'Missouri', 'Mississippi', 
     'North Carolina', 'New Jersey', 'Ohio', 'Pennsylvania', 'South Carolina', 
     'Tennessee', 'Texas', 'Virginia', 'West Virginia'
   ];
+
+  const filteredStates = states.filter(state => 
+    state.toLowerCase().includes(filterQuery.toLowerCase())
+  );
 
   return (
     <div className="service-areas-page">
@@ -31,19 +36,42 @@ const ServiceAreas = () => {
           </div>
 
           <div className="state-directory">
-            <h3>Find Your Local SCA Office</h3>
-            <div className="state-grid-full">
-              {states.map((state) => (
-                <Link 
-                  key={state} 
-                  to={`/service-areas/${state.toLowerCase().replace(' ', '-')}`} 
-                  className="state-link"
-                >
-                  <span className="state-name">{state}</span>
-                  <span className="view-link">View Locations →</span>
-                </Link>
-              ))}
+            <div className="directory-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px', marginBottom: '30px', borderBottom: '2px solid var(--accent-orange)', paddingBottom: '10px' }}>
+              <h3 style={{ margin: 0, borderBottom: 'none', paddingBottom: 0 }}>Find Your Local SCA Office</h3>
+              <input 
+                type="text" 
+                placeholder="Search state..." 
+                value={filterQuery}
+                onChange={(e) => setFilterQuery(e.target.value)}
+                style={{
+                  padding: '8px 15px',
+                  borderRadius: '4px',
+                  border: '1px solid var(--border-gray)',
+                  fontSize: '14px',
+                  width: '250px',
+                  outline: 'none',
+                  transition: 'all 0.3s ease'
+                }}
+              />
             </div>
+            {filteredStates.length > 0 ? (
+              <div className="state-grid-full">
+                {filteredStates.map((state) => (
+                  <Link 
+                    key={state} 
+                    to={`/service-areas/${state.toLowerCase().replace(' ', '-')}`} 
+                    className="state-link"
+                  >
+                    <span className="state-name">{state}</span>
+                    <span className="view-link">View Locations →</span>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="no-states" style={{ textAlign: 'center', padding: '40px', background: 'white', borderRadius: '4px', border: '1px solid var(--border-gray)' }}>
+                <p style={{ margin: 0, color: 'var(--medium-gray)', fontSize: '15px' }}>No operations found matching "{filterQuery}". We are expanding rapidly—contact us to discuss service options in your area!</p>
+              </div>
+            )}
           </div>
         </div>
       </section>
