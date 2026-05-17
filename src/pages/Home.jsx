@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Truck, Road, Construction, Factory, Waves, ParkingCircle, CheckCircle, ArrowRight } from 'lucide-react';
 import StatsBanner from '../components/StatsBanner';
@@ -7,6 +7,14 @@ import ServiceCard from '../components/ServiceCard';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
+  const [activeReview, setActiveReview] = useState(0);
+
+  const reviews = [
+    { text: "SCA's street sweeping program has dramatically reduced our stormwater run-off pollutants. Their team is reliable, thorough, and highly professional.", author: "Michael S., Public Works Director", location: "Cleveland, OH" },
+    { text: "We contracted SCA for our highway construction project. Their response time was remarkable, and their sweepers kept the roadway completely safe.", author: "Sarah D., Project Manager", location: "Houston, TX" },
+    { text: "Excellent customer service and modern, clean sweeping vehicles. They maintain our parking lot weekly and the results are consistently outstanding.", author: "David R., Retail Facility Manager", location: "Atlanta, GA" }
+  ];
+
   const services = [
     { icon: Truck, title: 'Street Sweeping', description: 'Providing clean and safe streets for municipalities and residential communities.' },
     { icon: Road, title: 'Highway Sweeping', description: 'Specialized high-speed sweeping for state DOTs and interstate systems.' },
@@ -137,6 +145,44 @@ const Home = () => {
             <div className="map-cta">
               <Link to="/service-areas" className="btn btn-orange">Find Your Local Office</Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 6.5: Interactive Testimonials */}
+      <section className="section-padding testimonials-section bg-light" style={{ borderTop: '1px solid var(--border-gray)', borderBottom: '1px solid var(--border-gray)' }}>
+        <div className="container" style={{ maxWidth: '800px', textAlign: 'center' }}>
+          <SectionHeader eyebrow="Client Success" title="What Our Partners Say" centered={true} />
+          
+          <div className="testimonial-slider" style={{ marginTop: '40px', minHeight: '180px', position: 'relative' }}>
+            <p style={{ fontSize: '18px', fontStyle: 'italic', lineHeight: '1.8', color: 'var(--primary-blue)', margin: '0 0 20px' }}>
+              "{reviews[activeReview].text}"
+            </p>
+            <strong style={{ fontSize: '15px', display: 'block', color: 'var(--accent-orange)' }}>
+              {reviews[activeReview].author}
+            </strong>
+            <span style={{ fontSize: '13px', color: 'var(--medium-gray)' }}>
+              {reviews[activeReview].location}
+            </span>
+          </div>
+
+          <div className="testimonial-dots" style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginTop: '30px' }}>
+            {reviews.map((_, i) => (
+              <button 
+                key={i} 
+                onClick={() => setActiveReview(i)}
+                style={{ 
+                  width: '12px', 
+                  height: '12px', 
+                  borderRadius: '50%', 
+                  background: activeReview === i ? 'var(--accent-orange)' : 'var(--border-gray)', 
+                  border: 'none', 
+                  cursor: 'pointer',
+                  padding: 0,
+                  transition: 'all 0.3s ease'
+                }}
+              />
+            ))}
           </div>
         </div>
       </section>
