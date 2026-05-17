@@ -1,4 +1,4 @@
-import { Phone, Linkedin, Twitter, Facebook, Menu, X } from 'lucide-react';
+import { Phone, Linkedin, Twitter, Facebook, Menu, X, Accessibility } from 'lucide-react';
 import { SITE_CONFIG } from '../constants/config';
 import { NAV_LINKS } from '../constants/navigation';
 
@@ -17,6 +17,10 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+
+  const handleToggleAccessibility = () => {
+    window.dispatchEvent(new Event('toggle-accessibility-toolbar'));
+  };
 
   /**
    * Effect hook to handle scroll events and update the sticky header state.
@@ -75,6 +79,22 @@ const Header = () => {
                 {link.name}
               </Link>
             ))}
+            <button 
+              onClick={handleToggleAccessibility} 
+              className="accessibility-nav-btn"
+              title="Toggle Accessibility Options"
+              style={{
+                background: 'transparent',
+                border: 'none',
+                color: 'var(--primary-blue)',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                padding: '5px'
+              }}
+            >
+              <Accessibility size={20} />
+            </button>
             <Link to="/contact" className="btn btn-orange nav-cta">Get a Quote</Link>
           </div>
 
