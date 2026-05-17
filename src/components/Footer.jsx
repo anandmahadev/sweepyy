@@ -1,3 +1,5 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { Linkedin, Twitter, Facebook, MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { SITE_CONFIG } from '../constants/config';
 import { NAV_LINKS, FOOTER_SOLUTIONS } from '../constants/navigation';
