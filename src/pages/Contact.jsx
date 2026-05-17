@@ -15,14 +15,45 @@ const Contact = () => {
   });
 
   const [status, setStatus] = useState('');
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) newErrors.name = 'Full Name is required';
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email) {
+      newErrors.email = 'Email Address is required';
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+    
+    if (formData.phone) {
+      const cleanPhone = formData.phone.replace(/\D/g, '');
+      if (cleanPhone.length < 10) {
+        newErrors.phone = 'Phone number must be at least 10 digits';
+      }
+    }
+    
+    if (!formData.message.trim()) newErrors.message = 'Message is required';
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setErrors({});
+    if (!validateForm()) {
+      setStatus('error');
+      return;
+    }
     setStatus('sending');
     // Simulate API call
     setTimeout(() => {
       setStatus('success');
       setFormData({ name: '', email: '', phone: '', company: '', service: '', message: '' });
+      setErrors({});
     }, 1500);
   };
 
@@ -43,16 +74,19 @@ const Contact = () => {
                 <div className="form-group">
                   <label>Full Name *</label>
                   <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+                  {errors.name && <span className="error-text">{errors.name}</span>}
                 </div>
                 <div className="form-group">
                   <label>Email Address *</label>
                   <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+                  {errors.email && <span className="error-text">{errors.email}</span>}
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group">
                   <label>Phone Number</label>
                   <input type="tel" name="phone" value={formData.phone} onChange={handleChange} />
+                  {errors.phone && <span className="error-text">{errors.phone}</span>}
                 </div>
                 <div className="form-group">
                   <label>Company</label>
@@ -74,6 +108,7 @@ const Contact = () => {
               <div className="form-group">
                 <label>Message *</label>
                 <textarea name="message" rows="5" value={formData.message} onChange={handleChange} required></textarea>
+                {errors.message && <span className="error-text">{errors.message}</span>}
               </div>
               
               <button type="submit" className="btn btn-orange" disabled={status === 'sending'}>
@@ -83,6 +118,11 @@ const Contact = () => {
               {status === 'success' && (
                 <div className="status-msg success">
                   Your message has been sent and we will contact you shortly!
+                </div>
+              )}
+              {status === 'error' && (
+                <div className="status-msg error">
+                  Please correct the highlighted errors before submitting.
                 </div>
               )}
             </form>
@@ -194,6 +234,20 @@ const Contact = () => {
           background-color: #d4edda;
           color: #155724;
           border: 1px solid #c3e6cb;
+        }
+
+        .status-msg.error {
+          background-color: #f8d7da;
+          color: #721c24;
+          border: 1px solid #f5c6cb;
+        }
+
+        .error-text {
+          color: #dc3545;
+          font-size: 12px;
+          font-weight: 600;
+          margin-top: 4px;
+          display: block;
         }
 
         .info-card {
