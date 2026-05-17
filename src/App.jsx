@@ -17,6 +17,7 @@ import News from './pages/News';
 import Careers from './pages/Careers';
 import Contact from './pages/Contact';
 import ServiceAreaDetail from './pages/ServiceAreaDetail';
+import Privacy from './pages/Privacy';
 import { ROUTES } from './constants/routes';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
             <Route path={ROUTES.NEWS} element={<News />} />
             <Route path={ROUTES.CAREERS} element={<Careers />} />
             <Route path={ROUTES.CONTACT} element={<Contact />} />
+            <Route path={ROUTES.PRIVACY} element={<Privacy />} />
           </Routes>
         </main>
         <Footer />

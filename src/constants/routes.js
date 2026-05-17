@@ -6,5 +6,6 @@ export const ROUTES = {
   SERVICE_AREA_DETAIL: '/service-areas/:area',
   NEWS: '/news',
   CAREERS: '/careers',
-  CONTACT: '/contact'
+  CONTACT: '/contact',
+  PRIVACY: '/privacy'
 };
