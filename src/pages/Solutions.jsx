@@ -1,10 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PageHero from '../components/PageHero';
 import SectionHeader from '../components/SectionHeader';
 import ServiceCard from '../components/ServiceCard';
 import { Truck, Road, Construction, Factory, Waves, ParkingCircle } from 'lucide-react';
 
 const Solutions = () => {
+  const [areaSize, setAreaSize] = useState(10);
+  const [frequency, setFrequency] = useState('weekly');
+  const [sweeperType, setSweeperType] = useState('air');
+
+  const calculateImpact = () => {
+    let multiplier = 1;
+    if (frequency === 'weekly') multiplier = 52;
+    else if (frequency === 'bi-weekly') multiplier = 26;
+    else multiplier = 12;
+
+    let efficiency = 75;
+    if (sweeperType === 'air') efficiency = 92;
+    else if (sweeperType === 'vacuum') efficiency = 88;
+    else efficiency = 65;
+
+    const debrisRemoved = Math.round(areaSize * 15 * multiplier);
+    const runoffPrevented = efficiency;
+    const costEstimate = Math.round(areaSize * 25 * multiplier);
+
+    return { debrisRemoved, runoffPrevented, costEstimate };
+  };
+
+  const { debrisRemoved, runoffPrevented, costEstimate } = calculateImpact();
   const services = [
     { 
       icon: Truck, 
@@ -84,6 +107,68 @@ const Solutions = () => {
                 {industry}
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding bg-light" style={{ borderTop: '1px solid var(--border-gray)' }}>
+        <div className="container" style={{ maxWidth: '900px' }}>
+          <SectionHeader eyebrow="Calculator" title="Estimate Your Environmental & Debris Impact" centered={true} />
+          
+          <div className="calculator-card" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', background: 'white', padding: '40px', borderRadius: '8px', boxShadow: 'var(--box-shadow, 0 4px 12px rgba(0,0,0,0.05))', marginTop: '40px' }}>
+            <div className="calc-inputs" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <div>
+                <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '8px', fontSize: '14px', color: 'var(--primary-blue)' }}>Area to Sweep (Thousand Sq. Yards)</label>
+                <input 
+                  type="number" 
+                  value={areaSize}
+                  onChange={(e) => setAreaSize(Math.max(1, parseInt(e.target.value) || 0))}
+                  style={{ width: '100%', padding: '10px', border: '1px solid var(--border-gray)', borderRadius: '4px' }} 
+                />
+              </div>
+
+              <div>
+                <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '8px', fontSize: '14px', color: 'var(--primary-blue)' }}>Sweeping Frequency</label>
+                <select 
+                  value={frequency} 
+                  onChange={(e) => setFrequency(e.target.value)}
+                  style={{ width: '100%', padding: '10px', border: '1px solid var(--border-gray)', borderRadius: '4px' }}
+                >
+                  <option value="weekly">Weekly (52x / year)</option>
+                  <option value="bi-weekly">Bi-Weekly (26x / year)</option>
+                  <option value="monthly">Monthly (12x / year)</option>
+                </select>
+              </div>
+
+              <div>
+                <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '8px', fontSize: '14px', color: 'var(--primary-blue)' }}>Sweeper Technology Type</label>
+                <select 
+                  value={sweeperType} 
+                  onChange={(e) => setSweeperType(e.target.value)}
+                  style={{ width: '100%', padding: '10px', border: '1px solid var(--border-gray)', borderRadius: '4px' }}
+                >
+                  <option value="air">Regenerative Air (PM10 Certified)</option>
+                  <option value="vacuum">Vacuum Filter Sweeper</option>
+                  <option value="broom">Mechanical Broom Sweeper</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="calc-results" style={{ background: 'var(--primary-blue)', color: 'white', padding: '30px', borderRadius: '6px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '25px' }}>
+              <div>
+                <span style={{ display: 'block', fontSize: '13px', textTransform: 'uppercase', opacity: 0.8, fontWeight: 'bold' }}>Debris Removed Annually</span>
+                <strong style={{ fontSize: '32px', color: 'var(--accent-orange)' }}>{debrisRemoved.toLocaleString()} lbs</strong>
+              </div>
+
+              <div>
+                <span style={{ display: 'block', fontSize: '13px', textTransform: 'uppercase', opacity: 0.8, fontWeight: 'bold' }}>Stormwater Pollutant Reduction Efficiency</span>
+                <strong style={{ fontSize: '32px', color: 'var(--accent-orange)' }}>{runoffPrevented}% Efficiency</strong>
+              </div>
+
+              <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '15px' }}>
+                <span style={{ display: 'block', fontSize: '12px', opacity: 0.7, fontStyle: 'italic' }}>* Estimates are based on average municipal loading rates and EPA pollutant recovery efficiency factors.</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
