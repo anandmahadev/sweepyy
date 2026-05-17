@@ -18,6 +18,15 @@ Thank you for your interest in contributing to Sweepyy! We welcome all contribut
 - Add comments where necessary to explain complex logic.
 - Ensure the application builds without errors.
 
+## Git Commit Style Guidelines
+
+We strictly follow Conventional Commits formatting:
+- `feat(...)` for new enhancements.
+- `fix(...)` for bug fixes and patches.
+- `docs(...)` for documentation updates.
+- `style(...)` for formatting, CSS tweaks, etc.
+- `refactor(...)` for code structural changes.
+
 ## Bug Reports
 
 If you find a bug, please open an issue with:
