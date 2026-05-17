@@ -52,3 +52,12 @@ Sweepyy is a high-performance web application designed to showcase the services 
 - `src/pages`: Main page layouts.
 - `src/assets`: Static assets like images and icons.
 - `src/styles`: CSS files (currently mainly `index.css` and `App.css`).
+- `src/constants`: Navigation rules, routes configuration, and global site variables.
+
+## Developer Scripts
+
+The following scripts are available in the project package configuration:
+* `npm run dev` - Launches Vite dev server at http://localhost:5173 with HMR.
+* `npm run build` - Builds production bundle assets to the `/dist` directory.
+* `npm run preview` - Runs a local web server to preview your production build assets.
+
