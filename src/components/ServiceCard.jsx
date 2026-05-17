@@ -25,19 +25,22 @@ const ServiceCard = ({ icon: Icon, title = 'Service Title', description = 'Servi
       <style jsx>{`
         .service-card {
           background: white;
-          padding: 40px 30px;
-          border-radius: 4px;
-          box-shadow: var(--box-shadow);
+          padding: 45px 35px;
+          border-radius: 6px;
+          box-shadow: var(--box-shadow, 0 4px 12px rgba(0,0,0,0.05));
+          border: 1px solid rgba(0, 0, 0, 0.03);
           transition: var(--transition-smooth);
           display: flex;
           flex-direction: column;
           height: 100%;
+          position: relative;
         }
 
         .service-card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+          transform: translateY(-8px);
+          box-shadow: 0 15px 35px rgba(0, 48, 135, 0.08);
           border-bottom: 4px solid var(--accent-orange);
+          border-color: rgba(244, 121, 32, 0.2);
         }
 
         .service-card:hover .card-icon {

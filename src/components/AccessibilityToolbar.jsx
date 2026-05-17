@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Accessibility, Type, Contrast, CircleDashed, Link2, Languages } from 'lucide-react';
 
 const AccessibilityToolbar = () => {
@@ -7,6 +7,12 @@ const AccessibilityToolbar = () => {
   const [highContrast, setHighContrast] = useState(false);
   const [underlineLinks, setUnderlineLinks] = useState(false);
   const [fontSize, setFontSize] = useState(100);
+
+  useEffect(() => {
+    const handleToggle = () => setIsOpen(prev => !prev);
+    window.addEventListener('toggle-accessibility-toolbar', handleToggle);
+    return () => window.removeEventListener('toggle-accessibility-toolbar', handleToggle);
+  }, []);
 
   const toggleGrayscale = () => {
     setGrayscale(!grayscale);

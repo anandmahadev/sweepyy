@@ -4,17 +4,28 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const CookieBar = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [showPreferences, setShowPreferences] = useState(false);
+  const [preferences, setPreferences] = useState({
+    essential: true,
+    analytics: true,
+    marketing: false
+  });
 
   useEffect(() => {
-    const consent = localStorage.getItem('sca-cookie-consent');
+    const consent = localStorage.getItem('sca-cookie-consent-level');
     if (!consent) {
       const timer = setTimeout(() => setIsVisible(true), 1500);
       return () => clearTimeout(timer);
     }
   }, []);
 
-  const handleAccept = () => {
-    localStorage.setItem('sca-cookie-consent', 'true');
+  const handleAcceptAll = () => {
+    localStorage.setItem('sca-cookie-consent-level', JSON.stringify({ essential: true, analytics: true, marketing: true }));
+    setIsVisible(false);
+  };
+
+  const handleSavePreferences = () => {
+    localStorage.setItem('sca-cookie-consent-level', JSON.stringify(preferences));
     setIsVisible(false);
   };
 
@@ -32,8 +43,28 @@ const CookieBar = () => {
             <p>
               To continue using this website, you agree that we may store and access cookies on your device.
             </p>
+            {showPreferences && (
+              <div className="preferences-panel">
+                <label>
+                  <input type="checkbox" checked={preferences.essential} disabled readOnly /> Essential (Required)
+                </label>
+                <label>
+                  <input type="checkbox" checked={preferences.analytics} onChange={(e) => setPreferences({ ...preferences, analytics: e.target.checked })} /> Analytics
+                </label>
+                <label>
+                  <input type="checkbox" checked={preferences.marketing} onChange={(e) => setPreferences({ ...preferences, marketing: e.target.checked })} /> Marketing
+                </label>
+              </div>
+            )}
             <div className="cookie-actions">
-              <button className="btn btn-orange" onClick={handleAccept}>Accept</button>
+              {showPreferences ? (
+                <button className="btn btn-orange" onClick={handleSavePreferences}>Save Settings</button>
+              ) : (
+                <>
+                  <button className="btn btn-orange" onClick={handleAcceptAll}>Accept All</button>
+                  <button className="btn btn-outline" onClick={() => setShowPreferences(true)}>Preferences</button>
+                </>
+              )}
               <Link to="/privacy" className="privacy-link">Privacy Policy</Link>
             </div>
           </div>
@@ -57,6 +88,42 @@ const CookieBar = () => {
           justify-content: space-between;
           align-items: center;
           gap: 20px;
+        }
+
+        .preferences-panel {
+          display: flex;
+          gap: 20px;
+          margin: 10px 0;
+          font-size: 13px;
+        }
+
+        .preferences-panel label {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          cursor: pointer;
+        }
+
+        .preferences-panel input {
+          cursor: pointer;
+        }
+
+        .btn-outline {
+          background: transparent;
+          border: 1px solid white;
+          color: white;
+          padding: 8px 16px;
+          border-radius: 4px;
+          font-size: 13px;
+          cursor: pointer;
+          font-weight: 700;
+          text-transform: uppercase;
+          transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+          background: white;
+          color: var(--primary-blue);
         }
 
         .cookie-content p {

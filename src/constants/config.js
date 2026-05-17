@@ -8,6 +8,11 @@ export const SITE_CONFIG = {
   social: {
     linkedin: 'https://linkedin.com/company/sweeping-corporation-of-america',
     twitter: 'https://twitter.com/sweepingcorp',
-    facebook: 'https://facebook.com/sweepingcorp'
+    facebook: 'https://facebook.com/sweepingcorp',
+    instagram: 'https://instagram.com/sweepingcorp'
+  },
+  meta: {
+    keywords: ['power sweeping', 'street sweeping', 'jetvac cleaning', 'commercial sweeping', 'municipal sweeping'],
+    coordinates: { lat: 41.4993, lng: -81.6944 }
   }
 };

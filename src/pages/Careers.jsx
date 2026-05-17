@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PageHero from '../components/PageHero';
 import SectionHeader from '../components/SectionHeader';
 import { CheckCircle, Users, Briefcase, GraduationCap, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Careers = () => {
+  const [fileName, setFileName] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleFileChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setFileName(e.target.files[0].name);
+    }
+  };
+
+  const handleApplySubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
   const benefits = [
     'Medical, Dental, & Vision Insurance',
     '401(k) Retirement Plan',
@@ -75,7 +88,38 @@ const Careers = () => {
 
           <div className="text-center mt-40">
             <p>Don't see a position that fits? Send us your resume for future consideration.</p>
-            <Link to="/contact" className="btn btn-outline-blue">General Inquiry</Link>
+          </div>
+
+          <div className="quick-apply-form" style={{ maxWidth: '600px', margin: '40px auto 0', padding: '30px', background: 'white', borderRadius: '8px', boxShadow: 'var(--box-shadow, 0 4px 12px rgba(0,0,0,0.05))', border: '1px solid var(--border-gray)' }}>
+            <h3 style={{ textAlign: 'center', marginBottom: '20px', color: 'var(--primary-blue)', fontSize: '20px' }}>Quick Resume Submission</h3>
+            {submitted ? (
+              <div style={{ textAlign: 'center', padding: '20px', background: '#d4edda', color: '#155724', borderRadius: '4px', fontWeight: 'bold', fontSize: '14px', border: '1px solid #c3e6cb' }}>
+                Thank you! Your resume has been uploaded successfully.
+              </div>
+            ) : (
+              <form onSubmit={handleApplySubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
+                  <input type="text" placeholder="Full Name *" required style={{ flex: 1, minWidth: '200px', padding: '10px', border: '1px solid var(--border-gray)', borderRadius: '4px', fontSize: '14px' }} />
+                  <input type="email" placeholder="Email Address *" required style={{ flex: 1, minWidth: '200px', padding: '10px', border: '1px solid var(--border-gray)', borderRadius: '4px', fontSize: '14px' }} />
+                </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '13px', fontWeight: 'bold', marginBottom: '6px', color: 'var(--primary-blue)' }}>Upload Resume (PDF, DOCX) *</label>
+                  <input 
+                    type="file" 
+                    accept=".pdf,.docx,.doc" 
+                    onChange={handleFileChange}
+                    required 
+                    style={{ fontSize: '14px', display: 'block', width: '100%', padding: '10px', border: '1px dashed var(--border-gray)', borderRadius: '4px', cursor: 'pointer' }} 
+                  />
+                  {fileName && (
+                    <div style={{ fontSize: '13px', color: '#28a745', marginTop: '8px', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      ✓ Selected: {fileName}
+                    </div>
+                  )}
+                </div>
+                <button type="submit" className="btn btn-orange" style={{ width: '100%', padding: '12px', fontSize: '14px', fontWeight: 'bold' }}>Submit Application</button>
+              </form>
+            )}
           </div>
         </div>
       </section>

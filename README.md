@@ -1,30 +1,30 @@
 # Sweepyy - Sweeping Corporation Website
 
-A modern, responsive recreation of the Sweeping Corporation of America website built with React, Vite, and Vanilla CSS.
+A modern, responsive, high-performance recreation of the Sweeping Corporation of America (SCA) website built with React 18, Vite, and Vanilla CSS.
 
 ## Project Overview
 
-Sweepyy is a high-performance web application designed to showcase the services of a sweeping corporation. It focuses on accessibility, clean design, and a professional aesthetic.
+Sweepyy is an enterprise-grade web application showcasing nationwide power sweeping and JetVac environmental solutions. It prioritizes WCAG-compliant accessibility, rich performance, clean industrial design, and highly engaging user utilities.
 
-## Features
+## Core Features Implemented
 
-- **Responsive Design**: Fully functional across mobile, tablet, and desktop viewports.
-- **Modern UI/UX**: Clean, industrial aesthetic using a professional blue and orange palette.
-- **Accessibility**: Includes a dedicated accessibility toolbar (high contrast, font resizing).
-- **Comprehensive Pages**:
-  - **Home**: Overview of services and stats.
-  - **About**: Company mission and history.
-  - **Solutions**: Detailed breakdown of industry solutions.
-  - **Service Areas**: Interactive map and location details.
-  - **News**: Latest updates and blog posts.
-  - **Careers**: Job opportunities and benefits.
-- **Interactive Elements**: Custom headers, footers, and dynamic service cards.
+- **Responsive Design**: Completely customized layout grids translating seamlessly from desktop viewports down to small mobile screens.
+- **Modern UI/UX Aesthetics**: Curated blue and orange industrial palette with rich typography, glassmorphism layers, and subtle micro-animations.
+- **WCAG Accessibility**: A floating **Accessibility Toolbar** enabling on-the-fly text resizing (+/-), high contrast mode toggles, links underlining, and grayscale filters.
+- **Cookie Preference Panel**: A GDPR-compliant cookie consent system with customizable category choices (Essential, Analytics, Marketing) and state-based options saving.
+- **Environmental ROI Impact Calculator**: Real-time calculations inside the Solutions view calculating annual debris weights collected (lbs) and pollutant runoff filtration efficiency.
+- **Interactive Timeline & State Search**: Fully functional keyword and category list matching inside the News blog feed and Service Area state branches index.
+- **Form Verification & File Upload Feedback**: 
+  - Active regex verification for email inputs and 10-digit number requirements on the Contact Form.
+  - Interactive FAQ accordion drawer.
+  - Live feedback file-selection indicator for Career resume uploads.
 
 ## Tech Stack
 
 - **Framework**: [React 18](https://reactjs.org/)
 - **Build Tool**: [Vite](https://vitejs.dev/)
-- **Styling**: Vanilla CSS with modern variables.
+- **Animation**: [Framer Motion](https://www.framer.com/motion/)
+- **Styling**: Vanilla CSS (CSS variables, local component scopes via `styled-jsx`/React standard inline styles)
 - **Icons**: [Lucide React](https://lucide.dev/)
 
 ## Getting Started
@@ -46,9 +46,15 @@ Sweepyy is a high-performance web application designed to showcase the services 
    npm run build
    ```
 
-## Folder Structure
+## Developer Scripts
 
-- `src/components`: Reusable UI components.
-- `src/pages`: Main page layouts.
-- `src/assets`: Static assets like images and icons.
-- `src/styles`: CSS files (currently mainly `index.css` and `App.css`).
+* `npm run dev` - Launches Vite dev server at http://localhost:5173 with HMR.
+* `npm run build` - Builds production bundle assets to the `/dist` directory.
+* `npm run preview` - Runs a local web server to preview your production build assets.
+* `npm run lint` - Runs ESLint code style syntax checks.
+
+## Future Product Roadmap
+
+- [ ] **Interactive USA Coverage Map**: A SVG vector map tracking branch offices when hovering states.
+- [ ] **Multi-lingual Support**: Quick toggle selector between English and Spanish localizations.
+- [ ] **Real-time Live Chat**: A support chat widget for municipal emergency dispatch.
