@@ -40,33 +40,41 @@ const CookieBar = () => {
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
           <div className="container cookie-content">
-            <p>
-              To continue using this website, you agree that we may store and access cookies on your device.
-            </p>
+            <div className="cookie-top">
+              <p>
+                To continue using this website, you agree that we may store and access cookies on your device.
+              </p>
+              <div className="cookie-actions">
+                {showPreferences ? (
+                  <button className="btn btn-orange" onClick={handleSavePreferences}>Save Settings</button>
+                ) : (
+                  <>
+                    <button className="btn btn-orange" onClick={handleAcceptAll}>Accept All</button>
+                    <button className="btn btn-outline" onClick={() => setShowPreferences(true)}>Preferences</button>
+                  </>
+                )}
+                <Link to="/privacy" className="privacy-link">Privacy Policy</Link>
+              </div>
+            </div>
             {showPreferences && (
               <div className="preferences-panel">
-                <label>
-                  <input type="checkbox" checked={preferences.essential} disabled readOnly /> Essential (Required)
+                <label className="pref-card disabled">
+                  <input type="checkbox" checked={preferences.essential} disabled readOnly /> 
+                  <span className="pref-name">Essential</span>
+                  <span className="pref-desc">Required for core functions</span>
                 </label>
-                <label>
-                  <input type="checkbox" checked={preferences.analytics} onChange={(e) => setPreferences({ ...preferences, analytics: e.target.checked })} /> Analytics
+                <label className={`pref-card ${preferences.analytics ? 'active' : ''}`}>
+                  <input type="checkbox" checked={preferences.analytics} onChange={(e) => setPreferences({ ...preferences, analytics: e.target.checked })} /> 
+                  <span className="pref-name">Analytics</span>
+                  <span className="pref-desc">Help us optimize performance</span>
                 </label>
-                <label>
-                  <input type="checkbox" checked={preferences.marketing} onChange={(e) => setPreferences({ ...preferences, marketing: e.target.checked })} /> Marketing
+                <label className={`pref-card ${preferences.marketing ? 'active' : ''}`}>
+                  <input type="checkbox" checked={preferences.marketing} onChange={(e) => setPreferences({ ...preferences, marketing: e.target.checked })} /> 
+                  <span className="pref-name">Marketing</span>
+                  <span className="pref-desc">Enable tailored insights</span>
                 </label>
               </div>
             )}
-            <div className="cookie-actions">
-              {showPreferences ? (
-                <button className="btn btn-orange" onClick={handleSavePreferences}>Save Settings</button>
-              ) : (
-                <>
-                  <button className="btn btn-orange" onClick={handleAcceptAll}>Accept All</button>
-                  <button className="btn btn-outline" onClick={() => setShowPreferences(true)}>Preferences</button>
-                </>
-              )}
-              <Link to="/privacy" className="privacy-link">Privacy Policy</Link>
-            </div>
           </div>
 
       <style jsx>{`
@@ -85,27 +93,73 @@ const CookieBar = () => {
 
         .cookie-content {
           display: flex;
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .cookie-top {
+          display: flex;
           justify-content: space-between;
           align-items: center;
+          width: 100%;
           gap: 20px;
         }
 
         .preferences-panel {
-          display: flex;
-          gap: 20px;
-          margin: 10px 0;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 15px;
+          margin: 5px 0 10px;
           font-size: 13px;
+          width: 100%;
         }
 
-        .preferences-panel label {
+        .pref-card {
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          padding: 12px 15px;
+          border-radius: 6px;
           display: flex;
-          align-items: center;
-          gap: 6px;
+          flex-direction: column;
+          gap: 4px;
           cursor: pointer;
+          transition: all 0.3s ease;
+          user-select: none;
+          position: relative;
+          text-align: left;
         }
 
-        .preferences-panel input {
-          cursor: pointer;
+        .pref-card:hover {
+          background: rgba(255, 255, 255, 0.08);
+          border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .pref-card.active {
+          border-color: var(--accent-orange);
+          background: rgba(244, 121, 32, 0.1);
+        }
+
+        .pref-card.disabled {
+          opacity: 0.6;
+          cursor: default;
+        }
+
+        .pref-card input {
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          accent-color: var(--accent-orange);
+        }
+
+        .pref-name {
+          font-weight: 700;
+          color: white;
+          font-size: 14px;
+        }
+
+        .pref-desc {
+          color: #aaa;
+          font-size: 11px;
         }
 
         .btn-outline {
@@ -149,9 +203,21 @@ const CookieBar = () => {
         }
 
         @media (max-width: 768px) {
-          .cookie-content {
+          .cookie-top {
             flex-direction: column;
             text-align: center;
+            gap: 15px;
+          }
+          .preferences-panel {
+            grid-template-columns: 1fr;
+          }
+          .cookie-actions {
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+          }
+          .cookie-actions button {
+            width: 100%;
           }
         }
       `}</style>
