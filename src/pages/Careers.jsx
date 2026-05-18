@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PageHero from '../components/PageHero';
 import SectionHeader from '../components/SectionHeader';
-import { CheckCircle, Users, Briefcase, GraduationCap, Heart } from 'lucide-react';
+import { CheckCircle, Users, Briefcase, GraduationCap, Heart, Shield, Leaf, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Careers = () => {
@@ -63,6 +63,37 @@ const Careers = () => {
           </div>
           <div className="join-image">
             <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=800" alt="SCA Team" />
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding bg-blue text-white">
+        <div className="container">
+          <SectionHeader title="Our Core Values" light={true} />
+          <p className="values-intro text-center" style={{ maxWidth: '800px', margin: '0 auto 40px', color: 'rgba(255, 255, 255, 0.8)', fontSize: '16px', lineHeight: '1.6' }}>
+            These fundamental principles guide our daily sweeping operations and define how we support our partners nationwide.
+          </p>
+          <div className="values-grid">
+            <div className="value-card">
+              <div className="value-icon"><Shield size={28} /></div>
+              <h4>Safety First</h4>
+              <p>We hold safety above all else, ensuring our operators and the public are fully protected at every turn.</p>
+            </div>
+            <div className="value-card">
+              <div className="value-icon"><Leaf size={28} /></div>
+              <h4>Eco Stewardship</h4>
+              <p>We sweep to protect our waterways and reduce atmospheric particulates, caring for our communities.</p>
+            </div>
+            <div className="value-card">
+              <div className="value-icon"><Users size={28} /></div>
+              <h4>Team Integrity</h4>
+              <p>Honest work, respectful actions, and transparent communication form the foundation of our crew.</p>
+            </div>
+            <div className="value-card">
+              <div className="value-icon"><Award size={28} /></div>
+              <h4>Service Excellence</h4>
+              <p>We perform self-sweeping operations with elite standards, delivering absolute quality on every mile.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -225,26 +256,58 @@ const Careers = () => {
 
         .values-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 40px;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 25px;
           text-align: center;
         }
 
         .value-card {
-          padding: 40px;
-          background: rgba(255, 255, 255, 0.05);
+          padding: 30px 20px;
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.08);
           border-radius: 8px;
+          transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+          transform: translateY(-5px);
+          background: rgba(255, 255, 255, 0.06);
+          border-color: var(--accent-orange);
+          box-shadow: 0 10px 25px rgba(244, 121, 32, 0.1);
+        }
+
+        .value-icon {
+          width: 60px;
+          height: 60px;
+          margin: 0 auto 20px;
+          background: rgba(244, 121, 32, 0.1);
+          color: var(--accent-orange);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid rgba(244, 121, 32, 0.2);
+          transition: all 0.3s ease;
+        }
+
+        .value-card:hover .value-icon {
+          background: var(--accent-orange);
+          color: white;
+          transform: scale(1.1);
         }
 
         .value-card h4 {
           color: white;
-          font-size: 20px;
-          margin: 20px 0 15px;
+          font-size: 18px;
+          margin: 0 0 10px;
+          font-weight: 700;
         }
 
         .value-card p {
-          color: rgba(255, 255, 255, 0.8);
-          font-size: 15px;
+          color: rgba(255, 255, 255, 0.7);
+          font-size: 14px;
+          line-height: 1.5;
+          margin: 0;
         }
 
         @media (max-width: 992px) {
