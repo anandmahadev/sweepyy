@@ -58,3 +58,23 @@ Sweepyy is an enterprise-grade web application showcasing nationwide power sweep
 - [ ] **Interactive USA Coverage Map**: A SVG vector map tracking branch offices when hovering states.
 - [ ] **Multi-lingual Support**: Quick toggle selector between English and Spanish localizations.
 - [ ] **Real-time Live Chat**: A support chat widget for municipal emergency dispatch.
+
+## Local Troubleshooting
+
+If you encounter issues during local installation or execution, refer to these common solutions:
+
+### 1. Missing Lucide Icon Exports
+If Vite throws compilation errors about brand icon exports (e.g., `Linkedin`, `Twitter`, `Facebook`), they are resolved in this project by using lightweight inline SVG icons which bypass external Lucide package fluctuations. Ensure all references point to the new custom icon renderers.
+
+### 2. Node Version Conflicts
+This project runs best on Node.js versions `18.x` or `20.x`. If dependency installations fail with resolution conflicts, run clean parameters:
+```bash
+npm install --legacy-peer-deps
+```
+
+### 3. Port Occupancy
+If the default port `5173` is occupied by another application, Vite will dynamically switch to a fallback port (e.g., `5174`). You can explicitly declare a port by passing command line parameters:
+```bash
+npm run dev -- --port 3000
+```
+
