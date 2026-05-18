@@ -56,6 +56,52 @@ const ServiceAreaDetail = () => {
               </div>
             </div>
 
+            <div className="seasonal-scheduling-guide bg-light">
+              <h3>{stateName} Seasonal Sweeping Schedule</h3>
+              <p>
+                Our sweeping frequency and operations adjust dynamically to match seasonal weather, leaf accumulation, 
+                and road runoff variables across the state.
+              </p>
+              <div className="table-responsive">
+                <table className="scheduling-table">
+                  <thead>
+                    <tr>
+                      <th>Season</th>
+                      <th>Primary Operations</th>
+                      <th>Typical Frequency</th>
+                      <th>Focus Area</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Spring</strong></td>
+                      <td>Post-winter sand/debris removal</td>
+                      <td>Weekly / Bi-weekly</td>
+                      <td>Highway & Curb Runoffs</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Summer</strong></td>
+                      <td>Dust control & litter removal</td>
+                      <td>Bi-weekly / Monthly</td>
+                      <td>Retail & Commercial Lots</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Autumn</strong></td>
+                      <td>Heavy leaf collection & storm prep</td>
+                      <td>2x Weekly / Dynamic</td>
+                      <td>Drainage Catch Basins</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Winter</strong></td>
+                      <td>Emergency salt clearing & sand sweeps</td>
+                      <td>As needed / Standby</td>
+                      <td>Main Transport Arteries</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
             <div className="area-hiring bg-light">
               <h3>We're Hiring in {stateName}!</h3>
               <p>Join the SCA family and start your career in environmental services today.</p>
@@ -232,6 +278,53 @@ const ServiceAreaDetail = () => {
           text-align: center;
           color: var(--medium-gray);
           line-height: 1.8;
+        }
+
+        .seasonal-scheduling-guide {
+          margin-bottom: 40px;
+          padding: 30px;
+          border-radius: 4px;
+          border-top: 5px solid var(--primary-blue);
+        }
+        
+        .seasonal-scheduling-guide h3 {
+          font-size: 20px;
+          margin-bottom: 10px;
+        }
+
+        .seasonal-scheduling-guide p {
+          font-size: 14px;
+          margin-bottom: 20px !important;
+        }
+
+        .table-responsive {
+          overflow-x: auto;
+        }
+
+        .scheduling-table {
+          width: 100%;
+          border-collapse: collapse;
+          text-align: left;
+          background: white;
+          border-radius: 4px;
+          overflow: hidden;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .scheduling-table th, .scheduling-table td {
+          padding: 12px 15px;
+          border-bottom: 1px solid var(--border-gray);
+          font-size: 14px;
+        }
+
+        .scheduling-table th {
+          background-color: var(--primary-blue);
+          color: white;
+          font-weight: 700;
+        }
+
+        .scheduling-table tr:hover {
+          background-color: rgba(0,0,0,0.02);
         }
 
         @media (max-width: 992px) {

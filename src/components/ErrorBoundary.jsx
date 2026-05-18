@@ -8,7 +8,7 @@ import React from 'react';
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { hasError: false, error: null };
+    this.state = { hasError: false, error: null, showDetails: false };
   }
 
   static getDerivedStateFromError(error) {
@@ -29,13 +29,33 @@ class ErrorBoundary extends React.Component {
           <div className="error-fallback-content">
             <span className="error-icon">⚠️</span>
             <h2>Something went wrong.</h2>
-            <p>We apologize for the inconvenience. Please refresh the page or try again later.</p>
+            <p>We apologize for the inconvenience. Our systems have logged this error.</p>
+            <div className="error-actions" style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginBottom: '20px' }}>
+              <button 
+                className="btn btn-orange" 
+                onClick={() => window.location.reload()}
+              >
+                Reload Page
+              </button>
+              <button 
+                className="btn" 
+                onClick={() => { localStorage.clear(); sessionStorage.clear(); window.location.reload(); }}
+                style={{ backgroundColor: 'transparent', border: '1px solid #ccc', color: '#555' }}
+              >
+                Reset App State
+              </button>
+            </div>
             <button 
-              className="btn btn-orange" 
-              onClick={() => window.location.reload()}
+              onClick={() => this.setState(prev => ({ showDetails: !prev.showDetails }))}
+              style={{ background: 'transparent', border: 'none', color: '#666', textDecoration: 'underline', cursor: 'pointer', fontSize: '13px' }}
             >
-              Reload Page
+              {this.state.showDetails ? 'Hide Diagnostics' : 'Show Diagnostics'}
             </button>
+            {this.state.showDetails && this.state.error && (
+              <pre style={{ marginTop: '15px', padding: '15px', background: '#f4f4f4', borderRadius: '4px', textAlign: 'left', fontSize: '12px', overflowX: 'auto', border: '1px solid #ddd', color: '#c0392b', fontFamily: 'monospace' }}>
+                {this.state.error.toString()}
+              </pre>
+            )}
           </div>
           <style jsx>{`
             .error-fallback {

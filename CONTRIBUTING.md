@@ -52,4 +52,17 @@ We strictly follow Conventional Commits formatting. A commit message must follow
    ```
 3. Open a detailed Pull Request detailing the goal, changes made, and a summary of your testing steps.
 
+## Automated Checks and Formatting
+
+To ensure consistent code styling and prevent syntax errors, we use ESLint. You can automatically fix many code quality and formatting issues by running:
+```bash
+npm run lint:fix
+```
+
+Before submitting a Pull Request, please run a final production check:
+```bash
+npm run build
+```
+This verifies that Vite's bundler can compile all assets (HTML, CSS, JS) cleanly without any ESM resolution failures.
+
 Thank you for helping us keep Sweepyy clean, fast, and accessible!

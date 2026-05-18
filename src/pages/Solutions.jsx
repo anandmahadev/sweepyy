@@ -20,14 +20,19 @@ const Solutions = () => {
     else if (sweeperType === 'vacuum') efficiency = 88;
     else efficiency = 65;
 
+    let co2Factor = 1.2;
+    if (sweeperType === 'air') co2Factor = 3.6;
+    else if (sweeperType === 'vacuum') co2Factor = 2.4;
+
     const debrisRemoved = Math.round(areaSize * 15 * multiplier);
     const runoffPrevented = efficiency;
+    const co2Savings = Math.round(areaSize * co2Factor * multiplier);
     const costEstimate = Math.round(areaSize * 25 * multiplier);
 
-    return { debrisRemoved, runoffPrevented, costEstimate };
+    return { debrisRemoved, runoffPrevented, co2Savings, costEstimate };
   };
 
-  const { debrisRemoved, runoffPrevented, costEstimate } = calculateImpact();
+  const { debrisRemoved, runoffPrevented, co2Savings, costEstimate } = calculateImpact();
   const services = [
     { 
       icon: Truck, 
@@ -87,6 +92,8 @@ const Solutions = () => {
                 title={service.title}
                 description={service.description}
                 delay={index * 0.1}
+                linkTo={`/contact?service=${encodeURIComponent(service.title)}`}
+                linkText="Request Quote"
               />
             ))}
           </div>
@@ -158,6 +165,11 @@ const Solutions = () => {
               <div>
                 <span style={{ display: 'block', fontSize: '13px', textTransform: 'uppercase', opacity: 0.8, fontWeight: 'bold' }}>Debris Removed Annually</span>
                 <strong style={{ fontSize: '32px', color: 'var(--accent-orange)' }}>{debrisRemoved.toLocaleString()} lbs</strong>
+              </div>
+
+              <div>
+                <span style={{ display: 'block', fontSize: '13px', textTransform: 'uppercase', opacity: 0.8, fontWeight: 'bold' }}>Carbon Emissions Saved</span>
+                <strong style={{ fontSize: '32px', color: 'var(--accent-orange)' }}>{co2Savings.toLocaleString()} lbs CO₂</strong>
               </div>
 
               <div>

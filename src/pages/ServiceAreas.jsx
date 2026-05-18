@@ -54,19 +54,27 @@ const ServiceAreas = () => {
                 }}
               />
             </div>
-            {filteredStates.length > 0 ? (
-              <div className="state-grid-full">
-                {filteredStates.map((state) => (
-                  <Link 
-                    key={state} 
-                    to={`/service-areas/${state.toLowerCase().replace(' ', '-')}`} 
-                    className="state-link"
-                  >
-                    <span className="state-name">{state}</span>
-                    <span className="view-link">View Locations →</span>
-                  </Link>
-                ))}
-              </div>
+             {filteredStates.length > 0 ? (
+               <div className="state-grid-full">
+                 {filteredStates.map((state) => (
+                   <div key={state} className="state-card-container">
+                     <Link 
+                       to={`/service-areas/${state.toLowerCase().replace(' ', '-')}`} 
+                       className="state-link"
+                     >
+                       <span className="state-name">{state}</span>
+                       <span className="view-link">View Details</span>
+                     </Link>
+                     <Link 
+                       to="/contact" 
+                       state={{ preselectedState: state }}
+                       className="state-quote-btn"
+                     >
+                       Fast Quote →
+                     </Link>
+                   </div>
+                 ))}
+               </div>
             ) : (
               <div className="no-states" style={{ textAlign: 'center', padding: '40px', background: 'white', borderRadius: '4px', border: '1px solid var(--border-gray)' }}>
                 <p style={{ margin: 0, color: 'var(--medium-gray)', fontSize: '15px' }}>No operations found matching "{filterQuery}". We are expanding rapidly—contact us to discuss service options in your area!</p>
@@ -136,21 +144,35 @@ const ServiceAreas = () => {
           gap: 20px;
         }
 
-        .state-link {
+        .state-card-container {
           background: white;
-          padding: 20px;
-          border-radius: 4px;
+          border-radius: 6px;
           border: 1px solid var(--border-gray);
           display: flex;
-          justify-content: space-between;
-          align-items: center;
+          flex-direction: column;
+          overflow: hidden;
           transition: var(--transition-smooth);
         }
 
-        .state-link:hover {
+        .state-card-container:hover {
           border-color: var(--accent-orange);
-          box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+          box-shadow: 0 4px 15px rgba(0,0,0,0.06);
           transform: translateY(-2px);
+        }
+
+        .state-link {
+          padding: 20px 20px 10px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background: transparent;
+          border: none;
+          border-radius: 0;
+        }
+
+        .state-link:hover {
+          transform: none;
+          box-shadow: none;
         }
 
         .state-name {
@@ -164,6 +186,25 @@ const ServiceAreas = () => {
           color: var(--accent-orange);
           font-weight: 600;
           text-transform: uppercase;
+        }
+
+        .state-quote-btn {
+          margin: 0 20px 20px;
+          padding: 8px 12px;
+          background: rgba(244, 121, 32, 0.08);
+          color: var(--accent-orange);
+          font-weight: 700;
+          font-size: 13px;
+          text-align: center;
+          border-radius: 4px;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          transition: all 0.3s ease;
+        }
+
+        .state-quote-btn:hover {
+          background: var(--accent-orange);
+          color: white;
         }
 
         @media (max-width: 992px) {

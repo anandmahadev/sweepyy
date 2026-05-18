@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300..700&display=swap');
 
 html {
   scroll-behavior: smooth;
@@ -154,5 +155,14 @@ button {
 .accessibility-grayscale { filter: grayscale(100%); }
 .accessibility-high-contrast { contrast: 150%; }
 .accessibility-underline a { text-decoration: underline; }
+
+/* Dyslexic Friendly Accessibility Font */
+body.accessibility-dyslexic-font,
+body.accessibility-dyslexic-font * {
+  font-family: 'Lexend', 'Comic Sans MS', sans-serif !important;
+  letter-spacing: 0.1em !important;
+  word-spacing: 0.2em !important;
+  line-height: 2.0 !important;
+}
 
 /* End of File */
