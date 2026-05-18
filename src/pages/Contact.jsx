@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PageHero from '../components/PageHero';
 import SectionHeader from '../components/SectionHeader';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
 import { SITE_CONFIG } from '../constants/config';
+import { useLocation } from 'react-router-dom';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,29 @@ const Contact = () => {
     service: '',
     message: ''
   });
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state) {
+      const { preselectedState, preselectedService } = location.state;
+      setFormData(prev => {
+        let updatedMessage = prev.message;
+        let updatedService = prev.service;
+        if (preselectedState) {
+          updatedMessage = `Hello, I would like to request sweeping services in ${preselectedState}. Please contact me with details.`;
+        }
+        if (preselectedService) {
+          updatedService = preselectedService;
+        }
+        return {
+          ...prev,
+          message: updatedMessage,
+          service: updatedService
+        };
+      });
+    }
+  }, [location.state]);
 
   const [status, setStatus] = useState('');
   const [errors, setErrors] = useState({});
