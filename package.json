@@ -1,5 +1,15 @@
 {
-  "name": "new-folder",
+  "name": "sweepyy",
+  "description": "Premium Sweeping Corporation of America React Website Replica",
+  "keywords": [
+    "sweeping",
+    "jetvac",
+    "commercial-sweeping",
+    "power-sweeping",
+    "react",
+    "vite"
+  ],
+  "author": "Antigravity Pair Programmer",
   "private": true,
   "version": "0.0.0",
   "type": "module",
