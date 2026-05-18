@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const ServiceCard = ({ icon: Icon, title = 'Service Title', description = 'Service description goes here.', delay = 0 }) => {
+const ServiceCard = ({ icon: Icon, title = 'Service Title', description = 'Service description goes here.', delay = 0, linkTo = '/solutions', linkText = 'Learn More' }) => {
   if (!Icon) return null;
   return (
     <motion.div 
@@ -18,8 +18,8 @@ const ServiceCard = ({ icon: Icon, title = 'Service Title', description = 'Servi
       </div>
       <h3>{title}</h3>
       <p>{description}</p>
-      <Link to="/solutions" className="card-link">
-        Learn More <ArrowRight size={16} />
+      <Link to={linkTo} className="card-link">
+        {linkText} <ArrowRight size={16} />
       </Link>
 
       <style jsx>{`

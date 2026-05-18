@@ -87,6 +87,8 @@ const Solutions = () => {
                 title={service.title}
                 description={service.description}
                 delay={index * 0.1}
+                linkTo={`/contact?service=${encodeURIComponent(service.title)}`}
+                linkText="Request Quote"
               />
             ))}
           </div>
