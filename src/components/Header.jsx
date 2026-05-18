@@ -269,6 +269,23 @@ const Header = () => {
             align-items: flex-start;
           }
 
+          .nav-links.mobile-open .nav-item {
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+          }
+
+          .nav-links.mobile-open .nav-item.active {
+            background: rgba(244, 121, 32, 0.08);
+            border-left: 4px solid var(--accent-orange);
+            color: var(--accent-orange);
+          }
+
+          .nav-links.mobile-open .nav-item.active::after {
+            display: none;
+          }
+
           .mobile-toggle {
             display: block;
           }
