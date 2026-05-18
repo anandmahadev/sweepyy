@@ -155,4 +155,14 @@ button {
 .accessibility-high-contrast { contrast: 150%; }
 .accessibility-underline a { text-decoration: underline; }
 
+/* Dyslexic Friendly Accessibility Font */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300..700&display=swap');
+body.accessibility-dyslexic-font,
+body.accessibility-dyslexic-font * {
+  font-family: 'Lexend', 'Comic Sans MS', sans-serif !important;
+  letter-spacing: 0.1em !important;
+  word-spacing: 0.2em !important;
+  line-height: 2.0 !important;
+}
+
 /* End of File */
