@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 // Internal Components
@@ -7,11 +7,13 @@ import StatsBanner from '../components/StatsBanner';
 import SectionHeader from '../components/SectionHeader';
 
 const About = () => {
+  const [activeLeader, setActiveLeader] = useState(null);
+
   const leadership = [
-    { name: 'Michael Latanza', title: 'Chief Development Officer', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300' },
-    { name: 'Sarah Miller', title: 'VP of Operations', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=300' },
-    { name: 'David Chen', title: 'Chief Technology Officer', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=300' },
-    { name: 'James Wilson', title: 'Director of Safety', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=300' },
+    { name: 'Michael Latanza', title: 'Chief Development Officer', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300', bio: "Michael has over 20 years of experience in municipal growth and corporate development, leading SCA's nationwide strategy." },
+    { name: 'Sarah Miller', title: 'VP of Operations', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=300', bio: "Sarah directs all self-performing sweeping operations, optimizing scheduling efficiency and operator training nationwide." },
+    { name: 'David Chen', title: 'Chief Technology Officer', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=300', bio: "David spearheads SCA's smart dispatch and routing tech systems, pioneering low-emission route mapping." },
+    { name: 'James Wilson', title: 'Director of Safety', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=300', bio: "James holds our highest standard for public safety, managing our OSHA compliance and driver training academies." },
   ];
 
   return (
@@ -47,11 +49,13 @@ const About = () => {
             {leadership.map((member, index) => (
               <motion.div 
                 key={index}
-                className="leader-card"
+                className={`leader-card ${activeLeader === index ? 'active' : ''}`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
+                onClick={() => setActiveLeader(activeLeader === index ? null : index)}
+                style={{ cursor: 'pointer' }}
               >
                 <div className="leader-image">
                   <img src={member.image} alt={member.name} />
@@ -59,6 +63,17 @@ const About = () => {
                 <div className="leader-info">
                   <h3>{member.name}</h3>
                   <p>{member.title}</p>
+                  {activeLeader === index && (
+                    <motion.div 
+                      className="leader-bio"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      transition={{ duration: 0.3 }}
+                      style={{ marginTop: '15px', borderTop: '1px solid #eee', paddingTop: '15px', color: '#555', fontSize: '13px', textAlign: 'left', lineHeight: '1.5' }}
+                    >
+                      {member.bio}
+                    </motion.div>
+                  )}
                 </div>
               </motion.div>
             ))}
