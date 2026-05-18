@@ -6,6 +6,7 @@ const AccessibilityToolbar = () => {
   const [grayscale, setGrayscale] = useState(false);
   const [highContrast, setHighContrast] = useState(false);
   const [underlineLinks, setUnderlineLinks] = useState(false);
+  const [dyslexicFont, setDyslexicFont] = useState(false);
   const [fontSize, setFontSize] = useState(100);
 
   useEffect(() => {
@@ -27,6 +28,11 @@ const AccessibilityToolbar = () => {
   const toggleUnderline = () => {
     setUnderlineLinks(!underlineLinks);
     document.body.classList.toggle('accessibility-underline');
+  };
+
+  const toggleDyslexicFont = () => {
+    setDyslexicFont(!dyslexicFont);
+    document.body.classList.toggle('accessibility-dyslexic-font');
   };
 
   const changeFontSize = (delta) => {
@@ -67,6 +73,10 @@ const AccessibilityToolbar = () => {
 
         <button className={`tool-btn ${underlineLinks ? 'active' : ''}`} onClick={toggleUnderline} aria-pressed={underlineLinks}>
           <Link2 size={18} /> Underline Links
+        </button>
+
+        <button className={`tool-btn ${dyslexicFont ? 'active' : ''}`} onClick={toggleDyslexicFont} aria-pressed={dyslexicFont}>
+          <Languages size={18} /> Dyslexic Font
         </button>
 
         <button className="tool-btn reset-btn" onClick={() => window.location.reload()}>
