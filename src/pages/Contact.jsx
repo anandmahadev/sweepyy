@@ -17,6 +17,13 @@ const Contact = () => {
   const [status, setStatus] = useState('');
   const [errors, setErrors] = useState({});
   const [activeFaq, setActiveFaq] = useState(null);
+  const [copiedText, setCopiedText] = useState('');
+
+  const handleCopy = (text, label) => {
+    navigator.clipboard.writeText(text);
+    setCopiedText(label);
+    setTimeout(() => setCopiedText(''), 2000);
+  };
 
   const faqs = [
     { q: 'What states do you currently service?', a: 'SCA operates across 21 states including Ohio, Florida, Texas, California, Indiana, and Pennsylvania, with over 70 local dispatch locations.' },
@@ -147,20 +154,20 @@ const Contact = () => {
                     <p>{SITE_CONFIG.address}</p>
                   </div>
                 </li>
-                <li>
-                  <div className="info-icon"><Phone size={24} /></div>
-                  <div className="info-text">
-                    <strong>Phone</strong>
-                    <p>{SITE_CONFIG.phone}</p>
-                  </div>
-                </li>
-                <li>
-                  <div className="info-icon"><Mail size={24} /></div>
-                  <div className="info-text">
-                    <strong>Email</strong>
-                    <p>{SITE_CONFIG.email}</p>
-                  </div>
-                </li>
+                 <li onClick={() => handleCopy(SITE_CONFIG.phone, 'phone')} style={{ cursor: 'pointer' }}>
+                   <div className="info-icon"><Phone size={24} /></div>
+                   <div className="info-text">
+                     <strong>Phone {copiedText === 'phone' && <span style={{ color: 'var(--accent-orange)', fontSize: '12px', marginLeft: '5px' }}>(Copied!)</span>}</strong>
+                     <p>{SITE_CONFIG.phone}</p>
+                   </div>
+                 </li>
+                 <li onClick={() => handleCopy(SITE_CONFIG.email, 'email')} style={{ cursor: 'pointer' }}>
+                   <div className="info-icon"><Mail size={24} /></div>
+                   <div className="info-text">
+                     <strong>Email {copiedText === 'email' && <span style={{ color: 'var(--accent-orange)', fontSize: '12px', marginLeft: '5px' }}>(Copied!)</span>}</strong>
+                     <p>{SITE_CONFIG.email}</p>
+                   </div>
+                 </li>
                 <li>
                   <div className="info-icon"><Clock size={24} /></div>
                   <div className="info-text">
