@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Truck, Road, Construction, Factory, Waves, ParkingCircle, CheckCircle, ArrowRight } from 'lucide-react';
 import StatsBanner from '../components/StatsBanner';
@@ -8,6 +8,24 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [activeReview, setActiveReview] = useState(0);
+  const [timeLeft, setTimeLeft] = useState({ hours: 14, minutes: 42, seconds: 19 });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev.seconds > 0) {
+          return { ...prev, seconds: prev.seconds - 1 };
+        } else if (prev.minutes > 0) {
+          return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
+        } else if (prev.hours > 0) {
+          return { hours: prev.hours - 1, minutes: 59, seconds: 59 };
+        } else {
+          return { hours: 23, minutes: 59, seconds: 59 };
+        }
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   const reviews = [
     { text: "SCA's street sweeping program has dramatically reduced our stormwater run-off pollutants. Their team is reliable, thorough, and highly professional.", author: "Michael S., Public Works Director", location: "Cleveland, OH" },
@@ -49,6 +67,19 @@ const Home = () => {
             >
               Contact us to see how we can help keep your streets, highways and industrial complexes clean and safe.
             </motion.p>
+            <motion.div 
+              className="hero-dispatch-ticker"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <span className="ticker-label">🚨 Next Municipal Operations Sweep Launching In:</span>
+              <div className="countdown-timer">
+                <span className="timer-part"><strong>{String(timeLeft.hours).padStart(2, '0')}</strong> hrs</span>
+                <span className="timer-part"><strong>{String(timeLeft.minutes).padStart(2, '0')}</strong> mins</span>
+                <span className="timer-part"><strong>{String(timeLeft.seconds).padStart(2, '0')}</strong> secs</span>
+              </div>
+            </motion.div>
             <motion.div 
               className="hero-btns"
               initial={{ opacity: 0, y: 30 }}
@@ -431,6 +462,50 @@ const Home = () => {
           font-size: 18px;
           margin-bottom: 30px;
           opacity: 0.9;
+        }
+
+        .hero-dispatch-ticker {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          margin-bottom: 30px;
+          background: rgba(0, 0, 0, 0.4);
+          padding: 15px 20px;
+          border-radius: 6px;
+          border-left: 4px solid var(--accent-orange);
+          max-width: 500px;
+          backdrop-filter: blur(5px);
+          text-align: left;
+        }
+
+        .ticker-label {
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          font-weight: 700;
+          color: #ddd;
+        }
+
+        .countdown-timer {
+          display: flex;
+          gap: 15px;
+          align-items: center;
+        }
+
+        .timer-part {
+          font-size: 14px;
+          color: #eee;
+        }
+
+        .timer-part strong {
+          font-size: 20px;
+          color: white;
+          font-family: monospace;
+          background: rgba(255, 255, 255, 0.1);
+          padding: 2px 6px;
+          border-radius: 4px;
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          margin-right: 4px;
         }
 
         @media (max-width: 992px) {
