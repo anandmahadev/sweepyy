@@ -65,10 +65,12 @@ const ScrollToTop = () => {
             }
 
             @media (max-width: 768px) {
-              bottom: 20px;
-              right: 20px;
-              width: 40px;
-              height: 40px;
+              .scroll-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+              }
             }
           `}</style>
         </motion.button>
