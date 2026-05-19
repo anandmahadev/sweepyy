@@ -22,6 +22,9 @@ const News = () => {
   const handleSearchChange = (query) => {
     setSearchQuery(query);
     setCurrentPage(1);
+    if (query) {
+      setSelectedCategory('');
+    }
   };
 
   const handleCategorySelect = (category) => {
