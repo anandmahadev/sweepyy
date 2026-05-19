@@ -52,9 +52,14 @@ class ErrorBoundary extends React.Component {
               {this.state.showDetails ? 'Hide Diagnostics' : 'Show Diagnostics'}
             </button>
             {this.state.showDetails && this.state.error && (
-              <pre style={{ marginTop: '15px', padding: '15px', background: '#f4f4f4', borderRadius: '4px', textAlign: 'left', fontSize: '12px', overflowX: 'auto', border: '1px solid #ddd', color: '#c0392b', fontFamily: 'monospace' }}>
-                {this.state.error.toString()}
-              </pre>
+              <div className="error-diagnostics-box" style={{ marginTop: '15px', padding: '15px', background: '#1e1e1e', borderRadius: '6px', textAlign: 'left', fontSize: '12.5px', overflowX: 'auto', border: '1px solid #333', color: '#e5c07b', fontFamily: 'Consolas, Monaco, monospace', lineHeight: '1.5' }}>
+                <div style={{ color: '#e06c75', fontWeight: 'bold', marginBottom: '8px', borderBottom: '1px solid #333', paddingBottom: '5px' }}>
+                  🔴 [REACT_RUNTIME_EXCEPTION]
+                </div>
+                <div style={{ marginBottom: '6px' }}><span style={{ color: '#56b6c2' }}>Type:</span> {this.state.error.name || 'Error'}</div>
+                <div style={{ marginBottom: '6px' }}><span style={{ color: '#98c379' }}>Message:</span> {this.state.error.message || this.state.error.toString()}</div>
+                <div><span style={{ color: '#c678dd' }}>Stack:</span> <span style={{ color: '#abb2bf' }}>{this.state.error.stack ? this.state.error.stack.split('\n')[0] : 'No stacktrace available.'}</span></div>
+              </div>
             )}
           </div>
           <style jsx>{`
