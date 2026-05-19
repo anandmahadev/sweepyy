@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   const [activeReview, setActiveReview] = useState(0);
   const [timeLeft, setTimeLeft] = useState({ hours: 14, minutes: 42, seconds: 19 });
+  const yearsOfOperations = new Date().getFullYear() - 2017;
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -73,7 +74,7 @@ const Home = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <span className="ticker-label">🚨 Next Municipal Operations Sweep Launching In:</span>
+              <span className="ticker-label">🚨 {yearsOfOperations} Years of Sweeping Excellence | Next Launch In:</span>
               <div className="countdown-timer">
                 <span className="timer-part"><strong>{String(timeLeft.hours).padStart(2, '0')}</strong> hrs</span>
                 <span className="timer-part"><strong>{String(timeLeft.minutes).padStart(2, '0')}</strong> mins</span>
