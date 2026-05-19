@@ -152,10 +152,17 @@ const AccessibilityToolbar = () => {
           transition: var(--transition-smooth);
         }
 
-        .tool-btn:hover, .tool-btn.active {
+        .tool-btn:hover {
           background: var(--primary-blue);
           color: white;
           border-color: var(--primary-blue);
+        }
+
+        .tool-btn.active {
+          background: var(--primary-blue);
+          color: white;
+          border-color: var(--primary-blue);
+          box-shadow: 0 0 0 2px var(--accent-orange);
         }
 
         .reset-btn {
