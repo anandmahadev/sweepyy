@@ -33,19 +33,23 @@ const CountUpNumber = ({ target, duration = 1500 }) => {
     }
 
     let startTimestamp = null;
+    let lastValue = -1;
     const step = (timestamp) => {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
       const current = Math.floor(progress * end);
       
-      let formatted = current;
-      if (hasComma) {
-        formatted = current.toLocaleString();
+      if (current !== lastValue) {
+        lastValue = current;
+        let formatted = current;
+        if (hasComma) {
+          formatted = current.toLocaleString();
+        }
+        if (hasPlus) {
+          formatted = `${formatted}+`;
+        }
+        setCount(formatted);
       }
-      if (hasPlus) {
-        formatted = `${formatted}+`;
-      }
-      setCount(formatted);
 
       if (progress < 1) {
         window.requestAnimationFrame(step);
