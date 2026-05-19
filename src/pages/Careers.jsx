@@ -6,16 +6,26 @@ import { Link } from 'react-router-dom';
 
 const Careers = () => {
   const [fileName, setFileName] = useState('');
+  const [fileError, setFileError] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
   const handleFileChange = (e) => {
+    setFileError('');
     if (e.target.files && e.target.files[0]) {
-      setFileName(e.target.files[0].name);
+      const file = e.target.files[0];
+      if (file.size > 5 * 1024 * 1024) {
+        setFileError('File exceeds 5MB size limit. Please upload a smaller resume.');
+        setFileName('');
+        e.target.value = null;
+      } else {
+        setFileName(file.name);
+      }
     }
   };
 
   const handleApplySubmit = (e) => {
     e.preventDefault();
+    if (fileError) return;
     setSubmitted(true);
   };
   const benefits = [
@@ -145,6 +155,11 @@ const Careers = () => {
                   {fileName && (
                     <div style={{ fontSize: '13px', color: '#28a745', marginTop: '8px', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '6px' }}>
                       ✓ Selected: {fileName}
+                    </div>
+                  )}
+                  {fileError && (
+                    <div style={{ fontSize: '13px', color: '#dc3545', marginTop: '8px', fontWeight: 'bold' }}>
+                      ⚠ {fileError}
                     </div>
                   )}
                 </div>
