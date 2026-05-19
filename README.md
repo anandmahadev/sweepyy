@@ -78,3 +78,9 @@ If the default port `5173` is occupied by another application, Vite will dynamic
 npm run dev -- --port 3000
 ```
 
+### 4. Windows PowerShell Script Execution Policies
+If local system execution policies block PowerShell from loading `.ps1` wrappers (e.g. `npm.ps1 cannot be loaded`), bypass this block by running commands directly through the classic command prompt shell:
+```bash
+cmd.exe /c npm run build
+```
+
