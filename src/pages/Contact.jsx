@@ -49,6 +49,17 @@ const Contact = () => {
     setTimeout(() => setCopiedText(''), 2000);
   };
 
+  const checkIfOpen = () => {
+    const now = new Date();
+    const day = now.getDay();
+    const hour = now.getHours();
+    const isWeekDay = day >= 1 && day <= 5;
+    const isWorkingHours = hour >= 8 && hour < 17;
+    return isWeekDay && isWorkingHours;
+  };
+  
+  const isOpen = checkIfOpen();
+
   const faqs = [
     { q: 'What states do you currently service?', a: 'SCA operates across 21 states including Ohio, Florida, Texas, California, Indiana, and Pennsylvania, with over 70 local dispatch locations.' },
     { q: 'How do you price commercial sweeping contracts?', a: 'Pricing is based on sweeping frequency, area size, debris volume, and specific service needs (e.g. hand-blowing area corners or trash bin cleanouts). Contact us for a free custom quote.' },
@@ -192,13 +203,30 @@ const Contact = () => {
                      <p>{SITE_CONFIG.email}</p>
                    </div>
                  </li>
-                <li>
-                  <div className="info-icon"><Clock size={24} /></div>
-                  <div className="info-text">
-                    <strong>Business Hours</strong>
-                    <p>{SITE_CONFIG.hours}</p>
-                  </div>
-                </li>
+                 <li>
+                   <div className="info-icon"><Clock size={24} /></div>
+                   <div className="info-text">
+                     <strong style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                       Business Hours
+                       <span style={{ 
+                         display: 'inline-flex', 
+                         alignItems: 'center', 
+                         gap: '5px', 
+                         fontSize: '11px', 
+                         fontWeight: '700', 
+                         padding: '2px 8px', 
+                         borderRadius: '12px', 
+                         background: isOpen ? 'rgba(40, 167, 69, 0.1)' : 'rgba(108, 117, 125, 0.1)', 
+                         color: isOpen ? '#28a745' : '#6c757d',
+                         textTransform: 'uppercase'
+                       }}>
+                         <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: isOpen ? '#28a745' : '#6c757d' }}></span>
+                         {isOpen ? 'Open Now' : 'Closed'}
+                       </span>
+                     </strong>
+                     <p>{SITE_CONFIG.hours}</p>
+                   </div>
+                 </li>
               </ul>
             </div>
 

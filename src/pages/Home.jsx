@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Truck, Road, Construction, Factory, Waves, ParkingCircle, CheckCircle, ArrowRight } from 'lucide-react';
 import StatsBanner from '../components/StatsBanner';
 import SectionHeader from '../components/SectionHeader';
@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   const [activeReview, setActiveReview] = useState(0);
   const [timeLeft, setTimeLeft] = useState({ hours: 14, minutes: 42, seconds: 19 });
+  const yearsOfOperations = new Date().getFullYear() - 2017;
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -73,7 +74,7 @@ const Home = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <span className="ticker-label">🚨 Next Municipal Operations Sweep Launching In:</span>
+              <span className="ticker-label">🚨 {yearsOfOperations} Years of Sweeping Excellence | Next Launch In:</span>
               <div className="countdown-timer">
                 <span className="timer-part"><strong>{String(timeLeft.hours).padStart(2, '0')}</strong> hrs</span>
                 <span className="timer-part"><strong>{String(timeLeft.minutes).padStart(2, '0')}</strong> mins</span>
@@ -185,16 +186,26 @@ const Home = () => {
         <div className="container" style={{ maxWidth: '800px', textAlign: 'center' }}>
           <SectionHeader eyebrow="Client Success" title="What Our Partners Say" centered={true} />
           
-          <div className="testimonial-slider" style={{ marginTop: '40px', minHeight: '180px', position: 'relative' }}>
-            <p style={{ fontSize: '18px', fontStyle: 'italic', lineHeight: '1.8', color: 'var(--primary-blue)', margin: '0 0 20px' }}>
-              "{reviews[activeReview].text}"
-            </p>
-            <strong style={{ fontSize: '15px', display: 'block', color: 'var(--accent-orange)' }}>
-              {reviews[activeReview].author}
-            </strong>
-            <span style={{ fontSize: '13px', color: 'var(--medium-gray)' }}>
-              {reviews[activeReview].location}
-            </span>
+          <div className="testimonial-slider" style={{ marginTop: '40px', minHeight: '180px', position: 'relative', overflow: 'hidden' }}>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeReview}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.35, ease: "easeInOut" }}
+              >
+                <p style={{ fontSize: '18px', fontStyle: 'italic', lineHeight: '1.8', color: 'var(--primary-blue)', margin: '0 0 20px' }}>
+                  "{reviews[activeReview].text}"
+                </p>
+                <strong style={{ fontSize: '15px', display: 'block', color: 'var(--accent-orange)' }}>
+                  {reviews[activeReview].author}
+                </strong>
+                <span style={{ fontSize: '13px', color: 'var(--medium-gray)' }}>
+                  {reviews[activeReview].location}
+                </span>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
           <div className="testimonial-dots" style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginTop: '30px' }}>

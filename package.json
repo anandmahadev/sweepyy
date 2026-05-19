@@ -12,6 +12,10 @@
   "author": "Antigravity Pair Programmer",
   "private": true,
   "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anandmahadev/sweepyy.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",

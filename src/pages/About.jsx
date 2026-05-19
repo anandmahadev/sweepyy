@@ -148,12 +148,27 @@ const About = () => {
           overflow: hidden;
           box-shadow: var(--box-shadow);
           text-align: center;
+          transition: all 0.3s ease;
+        }
+
+        .leader-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .leader-image {
+          overflow: hidden;
         }
 
         .leader-image img {
           width: 100%;
           height: 300px;
           object-fit: cover;
+          transition: transform 0.5s ease;
+        }
+
+        .leader-card:hover .leader-image img {
+          transform: scale(1.08);
         }
 
         .leader-info {

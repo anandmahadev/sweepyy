@@ -16,6 +16,23 @@ const ServiceAreas = () => {
     state.toLowerCase().includes(filterQuery.toLowerCase())
   );
 
+  const getGroupedStates = () => {
+    const groups = {};
+    filteredStates.forEach(state => {
+      const letter = state.charAt(0).toUpperCase();
+      if (!groups[letter]) {
+        groups[letter] = [];
+      }
+      groups[letter].push(state);
+    });
+    return Object.keys(groups).sort().map(letter => ({
+      letter,
+      states: groups[letter]
+    }));
+  };
+
+  const groupedStates = getGroupedStates();
+
   return (
     <div className="service-areas-page">
       <PageHero title="Service Areas" />
@@ -55,27 +72,34 @@ const ServiceAreas = () => {
               />
             </div>
              {filteredStates.length > 0 ? (
-               <div className="state-grid-full">
-                 {filteredStates.map((state) => (
-                   <div key={state} className="state-card-container">
-                     <Link 
-                       to={`/service-areas/${state.toLowerCase().replace(' ', '-')}`} 
-                       className="state-link"
-                     >
-                       <span className="state-name">{state}</span>
-                       <span className="view-link">View Details</span>
-                     </Link>
-                     <Link 
-                       to="/contact" 
-                       state={{ preselectedState: state }}
-                       className="state-quote-btn"
-                     >
-                       Fast Quote →
-                     </Link>
+               <div className="state-directory-groups" style={{ display: 'flex', flexDirection: 'column', gap: '35px' }}>
+                 {groupedStates.map((group) => (
+                   <div key={group.letter} className="state-group-block" style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                     <h4 style={{ margin: 0, fontSize: '20px', color: 'var(--accent-orange)', borderBottom: '2px solid var(--accent-orange)', paddingBottom: '3px', width: '30px', textAlign: 'center', fontWeight: 'bold' }}>{group.letter}</h4>
+                     <div className="state-grid-full">
+                       {group.states.map((state) => (
+                         <div key={state} className="state-card-container">
+                           <Link 
+                             to={`/service-areas/${state.toLowerCase().replace(' ', '-')}`} 
+                             className="state-link"
+                           >
+                             <span className="state-name">{state}</span>
+                             <span className="view-link">View Details</span>
+                           </Link>
+                           <Link 
+                             to="/contact" 
+                             state={{ preselectedState: state }}
+                             className="state-quote-btn"
+                           >
+                             Fast Quote →
+                           </Link>
+                         </div>
+                       ))}
+                     </div>
                    </div>
                  ))}
                </div>
-            ) : (
+             ) : (
               <div className="no-states" style={{ textAlign: 'center', padding: '40px', background: 'white', borderRadius: '4px', border: '1px solid var(--border-gray)' }}>
                 <p style={{ margin: 0, color: 'var(--medium-gray)', fontSize: '15px' }}>No operations found matching "{filterQuery}". We are expanding rapidly—contact us to discuss service options in your area!</p>
               </div>

@@ -47,3 +47,8 @@ This document describes the software architecture, folder structure, core compon
 ### 2. Accessibility Compliance
 - **Accessibility Toolbar**: Site-wide theme and sizing modifier for users requesting large font sizing, grayscale visual layers, or underlined navigation anchors.
 - **Cookie Preference Panel**: Flexible storage consent categorizations supporting standard GDRP classifications (Essential, Analytics, Marketing).
+
+### 3. Advanced UX & Calculations
+- **IntersectionObserver Stats**: Counts up key company statistics only when scrolled into view using standard browser observers.
+- **Lexend Reading Fluency Font**: Custom accessibility layout utilizing Google's Lexend font family to lower cognitive reading loads.
+- **Dynamic Pre-Selection Redirections**: Passing router states to auto-fill municipal sweeping and regional JetVac contact forms.

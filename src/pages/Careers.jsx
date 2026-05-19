@@ -6,16 +6,26 @@ import { Link } from 'react-router-dom';
 
 const Careers = () => {
   const [fileName, setFileName] = useState('');
+  const [fileError, setFileError] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
   const handleFileChange = (e) => {
+    setFileError('');
     if (e.target.files && e.target.files[0]) {
-      setFileName(e.target.files[0].name);
+      const file = e.target.files[0];
+      if (file.size > 5 * 1024 * 1024) {
+        setFileError('File exceeds 5MB size limit. Please upload a smaller resume.');
+        setFileName('');
+        e.target.value = null;
+      } else {
+        setFileName(file.name);
+      }
     }
   };
 
   const handleApplySubmit = (e) => {
     e.preventDefault();
+    if (fileError) return;
     setSubmitted(true);
   };
   const benefits = [
@@ -147,6 +157,11 @@ const Careers = () => {
                       ✓ Selected: {fileName}
                     </div>
                   )}
+                  {fileError && (
+                    <div style={{ fontSize: '13px', color: '#dc3545', marginTop: '8px', fontWeight: 'bold' }}>
+                      ⚠ {fileError}
+                    </div>
+                  )}
                 </div>
                 <button type="submit" className="btn btn-orange" style={{ width: '100%', padding: '12px', fontSize: '14px', fontWeight: 'bold' }}>Submit Application</button>
               </form>
@@ -155,28 +170,7 @@ const Careers = () => {
         </div>
       </section>
 
-      <section className="section-padding values-section bg-blue">
-        <div className="container">
-          <SectionHeader title="Our Core Values" light={true} />
-          <div className="values-grid">
-            <div className="value-card">
-              <Heart size={40} className="text-orange" />
-              <h4>Safety First</h4>
-              <p>We prioritize the safety of our employees and the communities we serve above all else.</p>
-            </div>
-            <div className="value-card">
-              <GraduationCap size={40} className="text-orange" />
-              <h4>Continuous Learning</h4>
-              <p>We provide ongoing training and development to help our team reach their full potential.</p>
-            </div>
-            <div className="value-card">
-              <Users size={40} className="text-orange" />
-              <h4>Teamwork</h4>
-              <p>We believe in the power of collaboration and supporting each other to achieve excellence.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       <style jsx>{`
         .join-grid {
