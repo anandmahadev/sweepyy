@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PageHero from '../components/PageHero';
 
 const PagePlaceholder = ({ title }) => (
@@ -11,7 +12,7 @@ const PagePlaceholder = ({ title }) => (
           We are currently updating our {title.toLowerCase()} information to provide you with the most accurate and up-to-date details. 
           Please check back soon or contact us directly for immediate assistance.
         </p>
-        <a href="/" className="btn btn-orange">Return to Home</a>
+        <Link to="/" className="btn btn-orange">Return to Home</Link>
       </div>
     </section>
   </div>
