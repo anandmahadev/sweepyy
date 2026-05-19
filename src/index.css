@@ -153,7 +153,12 @@ button {
 
 /* Accessibility Overlay */
 .accessibility-grayscale { filter: grayscale(100%); }
-.accessibility-high-contrast { contrast: 150%; }
+body.accessibility-high-contrast { filter: contrast(160%) saturate(120%); }
+body.accessibility-high-contrast a, 
+body.accessibility-high-contrast button { 
+  border-width: 2px !important;
+  font-weight: 700 !important;
+}
 .accessibility-underline a { text-decoration: underline; }
 
 /* Dyslexic Friendly Accessibility Font */
