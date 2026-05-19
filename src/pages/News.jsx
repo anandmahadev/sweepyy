@@ -305,6 +305,12 @@ const News = () => {
           border: 1px solid var(--border-gray);
           border-radius: 4px 0 0 4px;
           outline: none;
+          transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+          border-color: var(--accent-orange);
+          box-shadow: 0 0 0 2px rgba(244, 121, 32, 0.15);
         }
 
         .search-box button {
