@@ -1,5 +1,15 @@
 import { ROUTES } from './routes';
 
+/**
+ * @typedef {Object} NavLinkItem
+ * @property {string} name - The display label of the link
+ * @property {string} path - The internal route target path
+ */
+
+/**
+ * Main application navigation links.
+ * @type {NavLinkItem[]}
+ */
 export const NAV_LINKS = [
   { name: 'Home', path: ROUTES.HOME },
   { name: 'About', path: ROUTES.ABOUT },
@@ -10,6 +20,10 @@ export const NAV_LINKS = [
   { name: 'Contact', path: ROUTES.CONTACT },
 ];
 
+/**
+ * Quick solution links displayed inside the global footer panel.
+ * @type {NavLinkItem[]}
+ */
 export const FOOTER_SOLUTIONS = [
   { name: 'Street Sweeping', path: ROUTES.SOLUTIONS },
   { name: 'Highway Sweeping', path: ROUTES.SOLUTIONS },
