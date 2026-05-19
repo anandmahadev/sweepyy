@@ -170,28 +170,7 @@ const Careers = () => {
         </div>
       </section>
 
-      <section className="section-padding values-section bg-blue">
-        <div className="container">
-          <SectionHeader title="Our Core Values" light={true} />
-          <div className="values-grid">
-            <div className="value-card">
-              <Heart size={40} className="text-orange" />
-              <h4>Safety First</h4>
-              <p>We prioritize the safety of our employees and the communities we serve above all else.</p>
-            </div>
-            <div className="value-card">
-              <GraduationCap size={40} className="text-orange" />
-              <h4>Continuous Learning</h4>
-              <p>We provide ongoing training and development to help our team reach their full potential.</p>
-            </div>
-            <div className="value-card">
-              <Users size={40} className="text-orange" />
-              <h4>Teamwork</h4>
-              <p>We believe in the power of collaboration and supporting each other to achieve excellence.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       <style jsx>{`
         .join-grid {
