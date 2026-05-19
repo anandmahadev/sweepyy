@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Truck, Road, Construction, Factory, Waves, ParkingCircle, CheckCircle, ArrowRight } from 'lucide-react';
 import StatsBanner from '../components/StatsBanner';
 import SectionHeader from '../components/SectionHeader';
@@ -185,16 +185,26 @@ const Home = () => {
         <div className="container" style={{ maxWidth: '800px', textAlign: 'center' }}>
           <SectionHeader eyebrow="Client Success" title="What Our Partners Say" centered={true} />
           
-          <div className="testimonial-slider" style={{ marginTop: '40px', minHeight: '180px', position: 'relative' }}>
-            <p style={{ fontSize: '18px', fontStyle: 'italic', lineHeight: '1.8', color: 'var(--primary-blue)', margin: '0 0 20px' }}>
-              "{reviews[activeReview].text}"
-            </p>
-            <strong style={{ fontSize: '15px', display: 'block', color: 'var(--accent-orange)' }}>
-              {reviews[activeReview].author}
-            </strong>
-            <span style={{ fontSize: '13px', color: 'var(--medium-gray)' }}>
-              {reviews[activeReview].location}
-            </span>
+          <div className="testimonial-slider" style={{ marginTop: '40px', minHeight: '180px', position: 'relative', overflow: 'hidden' }}>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeReview}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.35, ease: "easeInOut" }}
+              >
+                <p style={{ fontSize: '18px', fontStyle: 'italic', lineHeight: '1.8', color: 'var(--primary-blue)', margin: '0 0 20px' }}>
+                  "{reviews[activeReview].text}"
+                </p>
+                <strong style={{ fontSize: '15px', display: 'block', color: 'var(--accent-orange)' }}>
+                  {reviews[activeReview].author}
+                </strong>
+                <span style={{ fontSize: '13px', color: 'var(--medium-gray)' }}>
+                  {reviews[activeReview].location}
+                </span>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
           <div className="testimonial-dots" style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginTop: '30px' }}>
