@@ -100,6 +100,18 @@ const ServiceAreaDetail = () => {
                   </tbody>
                 </table>
               </div>
+              <div style={{ marginTop: '20px', padding: '15px', background: 'rgba(244, 121, 32, 0.05)', borderLeft: '4px solid var(--accent-orange)', borderRadius: '0 4px 4px 0', textAlign: 'left' }}>
+                <span style={{ fontSize: '13.5px', color: 'var(--primary-blue)', fontWeight: 'bold', display: 'block', marginBottom: '5px' }}>Need emergency seasonal coverage in {stateName}?</span>
+                <p style={{ fontSize: '13px', color: 'var(--medium-gray)', margin: '0 0 10px', lineHeight: '1.4' }}>Our local dispatch crews adjust active sweep routes based on current stormwater runoff alerts.</p>
+                <Link 
+                  to="/contact" 
+                  state={{ preselectedState: stateName, preselectedService: 'Municipal Street Sweeping' }} 
+                  className="btn btn-orange"
+                  style={{ display: 'inline-block', padding: '8px 16px', fontSize: '12px', fontWeight: 'bold', textDecoration: 'none' }}
+                >
+                  Schedule Seasonal Review →
+                </Link>
+              </div>
             </div>
 
             <div className="area-hiring bg-light">
