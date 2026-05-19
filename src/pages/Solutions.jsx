@@ -28,11 +28,16 @@ const Solutions = () => {
     const runoffPrevented = efficiency;
     const co2Savings = Math.round(areaSize * co2Factor * multiplier);
     const costEstimate = Math.round(areaSize * 25 * multiplier);
+    
+    let diversionRate = 20;
+    if (sweeperType === 'air') diversionRate = 45;
+    else if (sweeperType === 'vacuum') diversionRate = 35;
+    const landfillDiverted = Math.round(debrisRemoved * (diversionRate / 100));
 
-    return { debrisRemoved, runoffPrevented, co2Savings, costEstimate };
+    return { debrisRemoved, runoffPrevented, co2Savings, costEstimate, landfillDiverted };
   };
 
-  const { debrisRemoved, runoffPrevented, co2Savings, costEstimate } = calculateImpact();
+  const { debrisRemoved, runoffPrevented, co2Savings, costEstimate, landfillDiverted } = calculateImpact();
   const services = [
     { 
       icon: Truck, 
@@ -170,6 +175,11 @@ const Solutions = () => {
               <div>
                 <span style={{ display: 'block', fontSize: '13px', textTransform: 'uppercase', opacity: 0.8, fontWeight: 'bold' }}>Carbon Emissions Saved</span>
                 <strong style={{ fontSize: '32px', color: 'var(--accent-orange)' }}>{co2Savings.toLocaleString()} lbs CO₂</strong>
+              </div>
+
+              <div>
+                <span style={{ display: 'block', fontSize: '13px', textTransform: 'uppercase', opacity: 0.8, fontWeight: 'bold' }}>Landfill Waste Diverted</span>
+                <strong style={{ fontSize: '32px', color: 'var(--accent-orange)' }}>{landfillDiverted.toLocaleString()} lbs</strong>
               </div>
 
               <div>
