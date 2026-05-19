@@ -1,6 +1,12 @@
-import { Phone, Menu, X, Accessibility } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { useLocation, Link } from 'react-router-dom';
+import { Phone, Menu, X } from 'lucide-react';
 import { SITE_CONFIG } from '../constants/config';
 import { NAV_LINKS } from '../constants/navigation';
+
+const AccessibilityIcon = ({ size = 20 }) => (
+  <svg viewBox="0 0 24 24" width={size} height={size} stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}><circle cx="12" cy="5" r="1"></circle><path d="m9 20 3-6 3 6M6 8h12M12 8v6"></path></svg>
+);
 
 const Linkedin = ({ size = 16 }) => (
   <svg viewBox="0 0 24 24" width={size} height={size} stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
@@ -106,7 +112,7 @@ const Header = () => {
                 padding: '5px'
               }}
             >
-              <Accessibility size={20} />
+              <AccessibilityIcon size={20} />
             </button>
             <Link to="/contact" className="btn btn-orange nav-cta">Get a Quote</Link>
           </div>
